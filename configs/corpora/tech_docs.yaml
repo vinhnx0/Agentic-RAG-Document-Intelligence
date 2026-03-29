@@ -1,0 +1,26 @@
+corpus_name: tech_docs
+raw_data_dir: data/raw/tech_docs
+processed_data_dir: data/processed/tech_docs
+
+file_types:
+  - md
+  - txt
+
+ingestion:
+  recursive: true
+  encoding: utf-8
+
+parser:
+  type: markdown_structured
+
+chunking:
+  strategy: section_then_tokens
+  max_tokens: 350
+  overlap_tokens: 50
+  min_chunk_chars: 150
+
+embedding:
+  model_name: BAAI/bge-small-en-v1.5
+
+vectorstore:
+  collection_name: tech_docs_chunks
