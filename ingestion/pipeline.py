@@ -1,3 +1,5 @@
+# ingestion/pipeline.py
+
 from __future__ import annotations
 
 from pathlib import Path
@@ -45,6 +47,15 @@ class IngestionPipeline:
             documents.append(doc)
 
         return documents
+
+    def get_processed_data_dir(self) -> Path:
+        processed_data_dir = self.config.get("processed_data_dir")
+        if not processed_data_dir:
+            raise KeyError(
+                "Missing 'processed_data_dir' in corpus config. "
+                "Please add it to the YAML file."
+            )
+        return Path(processed_data_dir)
 
     @staticmethod
     def _discover_files(
