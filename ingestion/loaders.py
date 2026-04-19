@@ -1,3 +1,5 @@
+# ingestion/loaders.py
+
 from __future__ import annotations
 
 import hashlib
@@ -38,7 +40,8 @@ class MarkdownLoader(BaseLoader):
     ) -> RawDocument:
         raw_text = file_path.read_text(encoding=encoding)
         title = self._extract_title(raw_text, file_path)
-        doc_id = self._build_doc_id(corpus_name, file_path)
+        content_hash = self._build_content_hash(raw_text)
+        doc_id = self._build_doc_id(corpus_name, content_hash)
 
         return RawDocument(
             doc_id=doc_id,
@@ -51,6 +54,8 @@ class MarkdownLoader(BaseLoader):
             metadata={
                 "extension": file_path.suffix.lower(),
                 "loader": "MarkdownLoader",
+                "content_hash": content_hash,
+                "original_source_path": str(file_path),
             },
         )
 
@@ -62,9 +67,13 @@ class MarkdownLoader(BaseLoader):
         return file_path.stem.replace("_", " ").replace("-", " ").strip()
 
     @staticmethod
-    def _build_doc_id(corpus_name: str, file_path: Path) -> str:
-        digest = hashlib.sha1(str(file_path).encode("utf-8")).hexdigest()[:12]
-        return f"{corpus_name}_{file_path.stem}_{digest}"
+    def _build_content_hash(raw_text: str) -> str:
+        normalized_text = raw_text.replace("\r\n", "\n").strip()
+        return hashlib.sha1(normalized_text.encode("utf-8")).hexdigest()[:16]
+
+    @staticmethod
+    def _build_doc_id(corpus_name: str, content_hash: str) -> str:
+        return f"{corpus_name}_{content_hash}"
 
 
 class TextLoader(BaseLoader):
@@ -78,7 +87,8 @@ class TextLoader(BaseLoader):
     ) -> RawDocument:
         raw_text = file_path.read_text(encoding=encoding)
         title = file_path.stem.replace("_", " ").replace("-", " ").strip()
-        doc_id = self._build_doc_id(corpus_name, file_path)
+        content_hash = self._build_content_hash(raw_text)
+        doc_id = self._build_doc_id(corpus_name, content_hash)
 
         return RawDocument(
             doc_id=doc_id,
@@ -91,13 +101,19 @@ class TextLoader(BaseLoader):
             metadata={
                 "extension": file_path.suffix.lower(),
                 "loader": "TextLoader",
+                "content_hash": content_hash,
+                "original_source_path": str(file_path),
             },
         )
 
     @staticmethod
-    def _build_doc_id(corpus_name: str, file_path: Path) -> str:
-        digest = hashlib.sha1(str(file_path).encode("utf-8")).hexdigest()[:12]
-        return f"{corpus_name}_{file_path.stem}_{digest}"
+    def _build_content_hash(raw_text: str) -> str:
+        normalized_text = raw_text.replace("\r\n", "\n").strip()
+        return hashlib.sha1(normalized_text.encode("utf-8")).hexdigest()[:16]
+
+    @staticmethod
+    def _build_doc_id(corpus_name: str, content_hash: str) -> str:
+        return f"{corpus_name}_{content_hash}"
 
 
 class LoaderRegistry:
