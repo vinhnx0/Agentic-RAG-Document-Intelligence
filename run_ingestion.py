@@ -2,13 +2,12 @@
 
 from __future__ import annotations
 
-import json
-from dataclasses import asdict
 from datetime import datetime, timezone
 from pathlib import Path
 
 from ingestion.pipeline import IngestionPipeline
 from schemas.documents import RawDocument
+from utils.io import ensure_stage_output_dir, to_jsonable, write_json
 
 
 CONFIG_PATH = "configs/corpora/tech_docs.yaml"
@@ -18,19 +17,10 @@ def utc_now_compact() -> str:
     return datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
 
 
-def ensure_output_dir(base_dir: str | Path) -> Path:
-    output_dir = Path(base_dir) / "ingestion"
-    output_dir.mkdir(parents=True, exist_ok=True)
-    return output_dir
-
-
 def save_document_output(output_dir: Path, document: RawDocument) -> str:
     file_name = f"{document.doc_id}.json"
     output_path = output_dir / file_name
-
-    with output_path.open("w", encoding="utf-8") as f:
-        json.dump(asdict(document), f, ensure_ascii=False, indent=2)
-
+    write_json(output_path, to_jsonable(document))
     return file_name
 
 
@@ -69,8 +59,7 @@ def build_summary(
 
 def save_summary(output_dir: Path, summary: dict) -> Path:
     summary_path = output_dir / "ingestion_summary.json"
-    with summary_path.open("w", encoding="utf-8") as f:
-        json.dump(summary, f, ensure_ascii=False, indent=2)
+    write_json(summary_path, summary)
     return summary_path
 
 
@@ -79,7 +68,7 @@ def main() -> None:
     documents = pipeline.run()
 
     processed_data_dir = pipeline.get_processed_data_dir()
-    output_dir = ensure_output_dir(processed_data_dir)
+    output_dir = ensure_stage_output_dir(processed_data_dir, "ingestion")
 
     saved_files: list[str] = []
     for doc in documents:
