@@ -41,8 +41,8 @@ def main() -> None:
         pipeline.get_output_stage_name(),
     )
 
-    report_path = output_dir / "evaluation_report.json"
-    summary_path = output_dir / "evaluation_summary.json"
+    report_path = output_dir / "evaluation_report_after.json"
+    summary_path = output_dir / "evaluation_summary_after.json"
 
     write_json(report_path, evaluation_report)
     write_json(summary_path, build_summary(evaluation_report))
