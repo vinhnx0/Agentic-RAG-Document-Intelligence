@@ -1,2 +1,3 @@
 pyyaml
-pytest
+sentence-transformers
+qdrant-client

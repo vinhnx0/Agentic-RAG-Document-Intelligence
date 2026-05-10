@@ -1,0 +1,92 @@
+[
+  {
+    "query_id": "1",
+    "query": "What is Dependency Injection?",
+    "expected_source_contains": "fastapi",
+    "expected_section_keywords": ["Dependency", "Injection"]
+  },
+  {
+    "query_id": "2",
+    "query": "What is FastAPI?",
+    "expected_source_contains": "fastapi",
+    "expected_section_keywords": ["FastAPI"]
+  },
+  {
+    "query_id": "3",
+    "query": "How to Install FastAPI?",
+    "expected_source_contains": "fastapi",
+    "expected_section_keywords": ["FastAPI"]
+  },
+  {
+    "query_id": "4",
+    "query": "How to Create a Virtual Environment?",
+    "expected_source_contains": "fastapi",
+    "expected_section_keywords": ["Virtual", "Environment"]
+  },
+  {
+    "query_id": "5",
+    "query": "What is Qdrant collection?",
+    "expected_source_contains": "qdrant",
+    "expected_section_keywords": ["Collection"]
+  },
+  {
+    "query_id": "6",
+    "query": "How to Create a collection?",
+    "expected_source_contains": "qdrant",
+    "expected_section_keywords": ["Create", "Collection"]
+  },
+  {
+    "query_id": "7",
+    "query": "How do I reduce memory usage?",
+    "expected_source_contains": "qdrant",
+    "expected_section_keywords": ["Memory"]
+  },
+  {
+    "query_id": "8",
+    "query": "What is the maximum vector dimension supported by Qdrant?",
+    "expected_source_contains": "qdrant",
+    "expected_section_keywords": ["Vector", "Dimension"]
+  },
+  {
+    "query_id": "9",
+    "query": "What does the must clause do in Qdrant filtering?",
+    "expected_source_contains": "qdrant",
+    "expected_section_keywords": ["Must"]
+  },
+  {
+    "query_id": "10",
+    "query": "What is Qdrant Payload?",
+    "expected_source_contains": "qdrant",
+    "expected_section_keywords": ["Payload"]
+  },
+  {
+    "query_id": "11",
+    "query": "What are Qdrant Points?",
+    "expected_source_contains": "qdrant",
+    "expected_section_keywords": ["Points"]
+  },
+  {
+    "query_id": "12",
+    "query": "What are Qdrant Metrics?",
+    "expected_source_contains": "qdrant",
+    "expected_section_keywords": ["Metrics"]
+  },
+  {
+    "query_id": "13",
+    "query": "What are Dense Vectors?",
+    "expected_source_contains": "qdrant",
+    "expected_section_keywords": ["Dense", "Vectors"]
+  },
+  {
+    "query_id": "14",
+    "query": "What is Qdrant?",
+    "expected_source_contains": "qdrant",
+    "expected_section_keywords": ["Qdrant"]
+  },
+  {
+    "query_id": "15",
+    "query": "What Are Vector Databases?",
+    "expected_source_contains": "qdrant",
+    "expected_section_keywords": ["Vector", "Databases"]
+  }
+]

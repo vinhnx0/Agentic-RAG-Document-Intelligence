@@ -76,3 +76,51 @@ class DocumentChunk:
     page_number: int | None = None
     metadata: dict[str, Any] = field(default_factory=dict)
     chunked_at: str = field(default_factory=utc_now_iso)
+
+
+@dataclass(slots=True)
+class EmbeddedChunk:
+    """
+    Output of embedding stage.
+    Represents a chunk with its vector embedding.
+    """
+    chunk_id: str
+    doc_id: str
+    corpus: str
+    text: str
+    embedding: list[float]
+    embedding_model: str
+    chunk_index: int
+    section_title: str | None = None
+    section_path: list[str] = field(default_factory=list)
+    page_number: int | None = None
+    metadata: dict[str, Any] = field(default_factory=dict)
+    embedded_at: str = field(default_factory=utc_now_iso)
+
+@dataclass(slots=True)
+class Citation:
+    """
+    Citation attached to a generated answer.
+    Links an answer back to a retrieved document chunk.
+    """
+    citation_id: int
+    chunk_id: str
+    doc_id: str
+    source_path: str | None
+    section_title: str | None
+    section_path: list[str] = field(default_factory=list)
+    retrieval_score: float | None = None
+    rerank_score: float | None = None
+
+
+@dataclass(slots=True)
+class RAGAnswer:
+    """
+    Output of the RAG answer generation stage.
+    """
+    query: str
+    answer: str
+    citations: list[Citation]
+    context_chunks: list[dict[str, Any]]
+    metadata: dict[str, Any] = field(default_factory=dict)
+    generated_at: str = field(default_factory=utc_now_iso)
