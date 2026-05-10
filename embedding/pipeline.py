@@ -34,10 +34,26 @@ class EmbeddingPipeline:
             normalize_embeddings=embedding_config.get("normalize_embeddings", True),
         )
 
+    def _build_embedding_text(self, chunk: DocumentChunk) -> str:
+        section_title = chunk.section_title or ""
+        section_path = " > ".join(chunk.section_path or [])
+        source_path = chunk.metadata.get("source_path", "")
+
+        parts = [
+            f"Section title: {section_title}",
+            f"Section path: {section_path}",
+            f"Source: {source_path}",
+            "",
+            "Content:",
+            chunk.text,
+        ]
+
+        return "\n".join(part for part in parts if part is not None).strip()
+
     def run(self, chunks: list[DocumentChunk]) -> list[EmbeddedChunk]:
         embedder = self.registry.get_embedder()
 
-        texts = [chunk.text for chunk in chunks]
+        texts = [self._build_embedding_text(chunk) for chunk in chunks]
         vectors = embedder.embed_texts(texts)
 
         if len(chunks) != len(vectors):
@@ -67,6 +83,7 @@ class EmbeddingPipeline:
                         "normalize_embeddings",
                         True,
                     ),
+                    "embedding_input_strategy": "heading_aware",
                 },
             )
             embedded_chunks.append(embedded_chunk)

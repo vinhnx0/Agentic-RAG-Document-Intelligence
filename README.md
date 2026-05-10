@@ -36,7 +36,7 @@ Completed:
 - Semantic retrieval
 - Reranking with `BAAI/bge-reranker-base`
 - Extractive answer generation with citations
-- Baseline evaluation on 15 test queries
+- Baseline and heading-aware retrieval evaluation on 15 test queries
 
 ## Pipeline Overview
 
@@ -53,28 +53,35 @@ Raw Documents
   → Evaluation
 ```
 
-## Baseline Evaluation
+## Evaluation Results
 
 Evaluation was run on 15 manually designed technical-documentation queries, covering keyword-based, section-based, and paraphrased questions.
 
-| Component | Metric | Score |
-|---|---:|---:|
-| Retrieval | Hit@1 | 0.73 |
-| Retrieval | Hit@5 | 1.00 |
-| Retrieval | Hit@10 | 1.00 |
-| Retrieval | MRR | 0.86 |
-| Reranking | Hit@1 | 0.73 |
-| Reranking | Hit@5 | 1.00 |
-| Reranking | MRR | 0.83 |
-| RAG | Avg. citation coverage | 1.00 |
-| RAG | Avg. citation count | 5.00 |
+Two retrieval versions were compared:
 
-The baseline confirms that the system can consistently retrieve the expected documentation within the top 5 results. The next improvement is to make embeddings more structure-aware by including section titles and section paths in the embedding input.
+- **Baseline:** embedding input used mainly chunk body text.
+- **Heading-aware:** embedding input included section title, section path, source context, and chunk text.
+
+| Component | Metric | Baseline | Heading-aware | Change |
+|---|---:|---:|---:|---:|
+| Retrieval | Hit@1 | 0.73 | 0.87 | +0.13 |
+| Retrieval | Hit@5 | 1.00 | 1.00 | 0 |
+| Retrieval | Hit@10 | 1.00 | 1.00 | 0 |
+| Retrieval | MRR | 0.86 | 0.93 | +0.08 |
+| Reranking | Hit@1 | 0.73 | 0.80 | +0.07 |
+| Reranking | Hit@5 | 1.00 | 1.00 | 0 |
+| Reranking | MRR | 0.83 | 0.88 | +0.04 |
+| RAG | Avg. citation coverage | 1.00 | 1.00 | 0 |
+| RAG | Avg. citation count | 5.00 | 5.00 | 0 |
+
+The baseline already retrieved the expected documentation within the top 5 results for all 15 queries. After adding heading-aware embedding input, the main improvement appeared in ranking quality: Retrieval Hit@1 improved from 0.73 to 0.87, while Retrieval MRR improved from 0.86 to 0.93.
+
+This suggests that adding section titles and section paths to the embedding input helped the retriever place relevant sections closer to the top, even though overall top-5 coverage was already strong.
 
 Full evaluation outputs:
 
-- `data/processed/tech_docs/evaluation/evaluation_summary.json`
-- `data/processed/tech_docs/evaluation/evaluation_report.json`
+- [Evaluation Summary before Heading-aware Embedding](data\processed\tech_docs\evaluation\evaluation_report.json)
+- [Evaluation Summary after Heading-aware Embedding](data\processed\tech_docs\evaluation\evaluation_report_after.json)
 
 ## Project Structure
 
@@ -133,7 +140,7 @@ python run_evaluation.py
 
 ## Next Steps
 
-- Add heading-aware embedding input using section title, section path, document title, and chunk text.
-- Create a separate Qdrant collection for the improved retrieval version.
-- Re-run the same evaluation set and compare before/after retrieval metrics.
 - Expand the system to Dataset B: public financial reports and SEC 10-K filings.
+- Add PDF ingestion and parsing for long-form financial reports.
+- Create a financial-report evaluation set with realistic business questions.
+- Compare retrieval performance on technical documentation vs financial reports.

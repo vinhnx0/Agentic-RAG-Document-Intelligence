@@ -1,0 +1,1436 @@
+{
+  "query_count": 15,
+  "retrieval_summary": {
+    "hit_at_1": 0.7333333333333333,
+    "hit_at_5": 1,
+    "hit_at_10": 1,
+    "mrr": 0.8555555555555555
+  },
+  "reranking_summary": {
+    "hit_at_1": 0.7333333333333333,
+    "hit_at_5": 1,
+    "mrr": 0.8333333333333334
+  },
+  "rag_summary": {
+    "avg_citation_coverage": 1.0,
+    "avg_citation_count": 5
+  },
+  "query_reports": [
+    {
+      "query_id": "1",
+      "query": "What is Dependency Injection?",
+      "expected_source_contains": "fastapi",
+      "expected_section_keywords": [
+        "Dependency",
+        "Injection"
+      ],
+      "retrieval": {
+        "hit_at_1": true,
+        "hit_at_5": true,
+        "hit_at_10": true,
+        "mrr": 1.0
+      },
+      "reranking": {
+        "hit_at_1": true,
+        "hit_at_5": true,
+        "mrr": 1.0
+      },
+      "rag": {
+        "citation_count": 5,
+        "context_chunk_count": 5,
+        "citation_coverage": 1.0,
+        "answer_preview": "Based on the retrieved documentation, here is the most relevant information for: What is Dependency Injection?\n\n\n[1] What is \"Dependency Injection\"\n**\"Dependency Injection\"** means, in programming, that there is a way for your code (in this case, your *path operation functions*) to declare things that it requires to work and use: \"dependencies\". And then, that system (in this case **FastAPI**) will take care of doing whatever is needed to provide your code with those needed dependencies (\"inject"
+      },
+      "top_retrieval_preview": [
+        {
+          "rank": 1,
+          "score": 0.83511555,
+          "section_title": "What is \"Dependency Injection\"",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\dependencies_index.md"
+        },
+        {
+          "rank": 2,
+          "score": 0.76495844,
+          "section_title": "First Steps",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\dependencies_index.md"
+        },
+        {
+          "rank": 3,
+          "score": 0.74900734,
+          "section_title": "Simple and Powerful",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\dependencies_index.md"
+        },
+        {
+          "rank": 4,
+          "score": 0.69318897,
+          "section_title": "Dependencies",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\dependencies_index.md"
+        },
+        {
+          "rank": 5,
+          "score": 0.68795836,
+          "section_title": "Integrated with OpenAPI",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\dependencies_index.md"
+        }
+      ],
+      "top_reranking_preview": [
+        {
+          "rerank_rank": 1,
+          "rerank_score": 0.9965080618858337,
+          "retrieval_rank": 1,
+          "section_title": "What is \"Dependency Injection\"",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\dependencies_index.md"
+        },
+        {
+          "rerank_rank": 2,
+          "rerank_score": 0.9096608757972717,
+          "retrieval_rank": 3,
+          "section_title": "Simple and Powerful",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\dependencies_index.md"
+        },
+        {
+          "rerank_rank": 3,
+          "rerank_score": 0.2377658635377884,
+          "retrieval_rank": 7,
+          "section_title": "Simple usage",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\dependencies_index.md"
+        },
+        {
+          "rerank_rank": 4,
+          "rerank_score": 0.06134059652686119,
+          "retrieval_rank": 4,
+          "section_title": "Dependencies",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\dependencies_index.md"
+        },
+        {
+          "rerank_rank": 5,
+          "rerank_score": 0.02531857043504715,
+          "retrieval_rank": 2,
+          "section_title": "First Steps",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\dependencies_index.md"
+        }
+      ]
+    },
+    {
+      "query_id": "2",
+      "query": "What is FastAPI?",
+      "expected_source_contains": "fastapi",
+      "expected_section_keywords": [
+        "FastAPI"
+      ],
+      "retrieval": {
+        "hit_at_1": false,
+        "hit_at_5": true,
+        "hit_at_10": true,
+        "mrr": 0.3333333333333333
+      },
+      "reranking": {
+        "hit_at_1": true,
+        "hit_at_5": true,
+        "mrr": 1.0
+      },
+      "rag": {
+        "citation_count": 5,
+        "context_chunk_count": 5,
+        "citation_coverage": 1.0,
+        "answer_preview": "Based on the retrieved documentation, here is the most relevant information for: What is FastAPI?\n\n\n[1] Deploy to other cloud providers\nFastAPI is open source and based on standards. You can deploy FastAPI apps to any cloud provider you choose. Follow your cloud provider's guides to deploy FastAPI apps with them. 🤓\n\n[2] About FastAPI Cloud\n**[FastAPI Cloud](https://fastapicloud.com)** is built by the same author and team behind **FastAPI**. It streamlines the process of **building**, **deploying"
+      },
+      "top_retrieval_preview": [
+        {
+          "rank": 1,
+          "score": 0.7618549,
+          "section_title": "Tutorial - User Guide",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\tutorial_index.md"
+        },
+        {
+          "rank": 2,
+          "score": 0.7545428,
+          "section_title": "Dependencies",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\dependencies_index.md"
+        },
+        {
+          "rank": 3,
+          "score": 0.75069684,
+          "section_title": "FastAPI",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\fastapi_index.md"
+        },
+        {
+          "rank": 4,
+          "score": 0.74300283,
+          "section_title": "About FastAPI Cloud",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\fastapi_index.md"
+        },
+        {
+          "rank": 5,
+          "score": 0.7335971,
+          "section_title": "Vote for FastAPI",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\help-fastapi.md"
+        }
+      ],
+      "top_reranking_preview": [
+        {
+          "rerank_rank": 1,
+          "rerank_score": 0.979868471622467,
+          "retrieval_rank": 7,
+          "section_title": "Deploy to other cloud providers",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\fastapi_index.md"
+        },
+        {
+          "rerank_rank": 2,
+          "rerank_score": 0.8914200067520142,
+          "retrieval_rank": 4,
+          "section_title": "About FastAPI Cloud",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\fastapi_index.md"
+        },
+        {
+          "rerank_rank": 3,
+          "rerank_score": 0.8646508455276489,
+          "retrieval_rank": 3,
+          "section_title": "FastAPI",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\fastapi_index.md"
+        },
+        {
+          "rerank_rank": 4,
+          "rerank_score": 0.7277504801750183,
+          "retrieval_rank": 2,
+          "section_title": "Dependencies",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\dependencies_index.md"
+        },
+        {
+          "rerank_rank": 5,
+          "rerank_score": 0.7242485880851746,
+          "retrieval_rank": 8,
+          "section_title": "Requirements",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\fastapi_index.md"
+        }
+      ]
+    },
+    {
+      "query_id": "3",
+      "query": "How to Install FastAPI?",
+      "expected_source_contains": "fastapi",
+      "expected_section_keywords": [
+        "FastAPI"
+      ],
+      "retrieval": {
+        "hit_at_1": false,
+        "hit_at_5": true,
+        "hit_at_10": true,
+        "mrr": 0.5
+      },
+      "reranking": {
+        "hit_at_1": true,
+        "hit_at_5": true,
+        "mrr": 1.0
+      },
+      "rag": {
+        "citation_count": 5,
+        "context_chunk_count": 5,
+        "citation_coverage": 1.0,
+        "answer_preview": "Based on the retrieved documentation, here is the most relevant information for: How to Install FastAPI?\n\n\n[1] Install FastAPI\nThe first step is to install FastAPI. Make sure you create a [virtual environment](../virtual-environments.md), activate it, and then **install FastAPI**: <div class=\"termy\"> ```console $ pip install \"fastapi[standard]\" ---> 100% ``` </div> /// note When you install with `pip install \"fastapi[standard]\"` it comes with some default optional standard dependencies, includin"
+      },
+      "top_retrieval_preview": [
+        {
+          "rank": 1,
+          "score": 0.81571484,
+          "section_title": "Why Virtual Environments",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\virtual-environments.md"
+        },
+        {
+          "rank": 2,
+          "score": 0.8120083,
+          "section_title": "Installation",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\fastapi_index.md"
+        },
+        {
+          "rank": 3,
+          "score": 0.77622503,
+          "section_title": "Run it",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\fastapi_index.md"
+        },
+        {
+          "rank": 4,
+          "score": 0.7739414,
+          "section_title": "Install FastAPI",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\tutorial_index.md"
+        },
+        {
+          "rank": 5,
+          "score": 0.7676993,
+          "section_title": "Tutorial - User Guide",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\tutorial_index.md"
+        }
+      ],
+      "top_reranking_preview": [
+        {
+          "rerank_rank": 1,
+          "rerank_score": 0.9994444251060486,
+          "retrieval_rank": 4,
+          "section_title": "Install FastAPI",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\tutorial_index.md"
+        },
+        {
+          "rerank_rank": 2,
+          "rerank_score": 0.9988604784011841,
+          "retrieval_rank": 2,
+          "section_title": "Installation",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\fastapi_index.md"
+        },
+        {
+          "rerank_rank": 3,
+          "rerank_score": 0.9982709884643555,
+          "retrieval_rank": 1,
+          "section_title": "Why Virtual Environments",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\virtual-environments.md"
+        },
+        {
+          "rerank_rank": 4,
+          "rerank_score": 0.9808431267738342,
+          "retrieval_rank": 6,
+          "section_title": "Without `fastapi-cloud-cli`",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\fastapi_index.md"
+        },
+        {
+          "rerank_rank": 5,
+          "rerank_score": 0.9806473851203918,
+          "retrieval_rank": 20,
+          "section_title": "Where are Packages Installed",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\virtual-environments.md"
+        }
+      ]
+    },
+    {
+      "query_id": "4",
+      "query": "How to Create a Virtual Environment?",
+      "expected_source_contains": "fastapi",
+      "expected_section_keywords": [
+        "Virtual",
+        "Environment"
+      ],
+      "retrieval": {
+        "hit_at_1": true,
+        "hit_at_5": true,
+        "hit_at_10": true,
+        "mrr": 1.0
+      },
+      "reranking": {
+        "hit_at_1": true,
+        "hit_at_5": true,
+        "mrr": 1.0
+      },
+      "rag": {
+        "citation_count": 5,
+        "context_chunk_count": 5,
+        "citation_coverage": 1.0,
+        "answer_preview": "Based on the retrieved documentation, here is the most relevant information for: How to Create a Virtual Environment?\n\n\n[1] Create a Virtual Environment\nWhen you start working on a Python project **for the first time**, create a virtual environment **<dfn title=\"there are other options, this is a simple guideline\">inside your project</dfn>**. /// tip You only need to do this **once per project**, not every time you work. /// //// tab | `venv` To create a virtual environment, you can use the `ven"
+      },
+      "top_retrieval_preview": [
+        {
+          "rank": 1,
+          "score": 0.77967,
+          "section_title": "Alternatives",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\virtual-environments.md"
+        },
+        {
+          "rank": 2,
+          "score": 0.7629721,
+          "section_title": "Create a Virtual Environment",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\virtual-environments.md"
+        },
+        {
+          "rank": 3,
+          "score": 0.74072117,
+          "section_title": "Conclusion",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\virtual-environments.md"
+        },
+        {
+          "rank": 4,
+          "score": 0.7351707,
+          "section_title": "Run Your Program",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\virtual-environments.md"
+        },
+        {
+          "rank": 5,
+          "score": 0.73050624,
+          "section_title": "Deactivate the Virtual Environment",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\virtual-environments.md"
+        }
+      ],
+      "top_reranking_preview": [
+        {
+          "rerank_rank": 1,
+          "rerank_score": 0.9985074400901794,
+          "retrieval_rank": 2,
+          "section_title": "Create a Virtual Environment",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\virtual-environments.md"
+        },
+        {
+          "rerank_rank": 2,
+          "rerank_score": 0.9253013134002686,
+          "retrieval_rank": 6,
+          "section_title": "Virtual Environments",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\virtual-environments.md"
+        },
+        {
+          "rerank_rank": 3,
+          "rerank_score": 0.8344640731811523,
+          "retrieval_rank": 11,
+          "section_title": "What are Virtual Environments",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\virtual-environments.md"
+        },
+        {
+          "rerank_rank": 4,
+          "rerank_score": 0.653236985206604,
+          "retrieval_rank": 12,
+          "section_title": "Add `.gitignore`",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\virtual-environments.md"
+        },
+        {
+          "rerank_rank": 5,
+          "rerank_score": 0.5145357847213745,
+          "retrieval_rank": 18,
+          "section_title": "Create a Project",
+          "source_path": "data\\raw\\tech_docs\\fastapi\\virtual-environments.md"
+        }
+      ]
+    },
+    {
+      "query_id": "5",
+      "query": "What is Qdrant collection?",
+      "expected_source_contains": "qdrant",
+      "expected_section_keywords": [
+        "Collection"
+      ],
+      "retrieval": {
+        "hit_at_1": true,
+        "hit_at_5": true,
+        "hit_at_10": true,
+        "mrr": 1.0
+      },
+      "reranking": {
+        "hit_at_1": false,
+        "hit_at_5": true,
+        "mrr": 0.3333333333333333
+      },
+      "rag": {
+        "citation_count": 5,
+        "context_chunk_count": 5,
+        "citation_coverage": 1.0,
+        "answer_preview": "Based on the retrieved documentation, here is the most relevant information for: What is Qdrant collection?\n\n\n[1] High-Level Overview of Qdrant's Architecture\n![qdrant](https://raw.githubusercontent.com/ramonpzg/mlops-sydney-2023/main/images/qdrant_overview_high_level.png) The diagram above represents a high-level overview of some of the main components of Qdrant. Here are the terminologies you should get familiar with. - [Collections](/documentation/concepts/collections/): A collection is a nam"
+      },
+      "top_retrieval_preview": [
+        {
+          "rank": 1,
+          "score": 0.7757341,
+          "section_title": "Why collection info shows inaccurate number of points?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\faq_qdrant-fundamentals.md"
+        },
+        {
+          "rank": 2,
+          "score": 0.75776184,
+          "section_title": "High-Level Overview of Qdrant's Architecture",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        },
+        {
+          "rank": 3,
+          "score": 0.75679624,
+          "section_title": "What is Qdrant?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        },
+        {
+          "rank": 4,
+          "score": 0.7409769,
+          "section_title": "Why the amount of indexed vectors doesn't match the amount of vectors in the collection?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\faq_qdrant-fundamentals.md"
+        },
+        {
+          "rank": 5,
+          "score": 0.7291402,
+          "section_title": "Should I create one Qdrant collection per user?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\faq_qdrant-fundamentals.md"
+        }
+      ],
+      "top_reranking_preview": [
+        {
+          "rerank_rank": 1,
+          "rerank_score": 0.9264506101608276,
+          "retrieval_rank": 2,
+          "section_title": "High-Level Overview of Qdrant's Architecture",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        },
+        {
+          "rerank_rank": 2,
+          "rerank_score": 0.8487815856933594,
+          "retrieval_rank": 3,
+          "section_title": "What is Qdrant?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        },
+        {
+          "rerank_rank": 3,
+          "rerank_score": 0.7925606966018677,
+          "retrieval_rank": 18,
+          "section_title": "Collection info",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\collections.md"
+        },
+        {
+          "rerank_rank": 4,
+          "rerank_score": 0.7488224506378174,
+          "retrieval_rank": 12,
+          "section_title": "How does Qdrant handle different vector embeddings from various providers in the same collection?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\faq_qdrant-fundamentals.md"
+        },
+        {
+          "rerank_rank": 5,
+          "rerank_score": 0.7071005702018738,
+          "retrieval_rank": 11,
+          "section_title": "Collection metadata",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\collections.md"
+        }
+      ]
+    },
+    {
+      "query_id": "6",
+      "query": "How to Create a collection?",
+      "expected_source_contains": "qdrant",
+      "expected_section_keywords": [
+        "Create",
+        "Collection"
+      ],
+      "retrieval": {
+        "hit_at_1": true,
+        "hit_at_5": true,
+        "hit_at_10": true,
+        "mrr": 1.0
+      },
+      "reranking": {
+        "hit_at_1": true,
+        "hit_at_5": true,
+        "mrr": 1.0
+      },
+      "rag": {
+        "citation_count": 5,
+        "context_chunk_count": 5,
+        "citation_coverage": 1.0,
+        "answer_preview": "Based on the retrieved documentation, here is the most relevant information for: How to Create a collection?\n\n\n[1] Create collection from another collection\nTo create a collection from another collection, use the [Migration Tool](https://github.com/qdrant/migration/). You can use it to either copy a collection within the same Qdrant instance or to copy a collection to another instance. For example, to copy a collection from a local instance to a Qdrant Cloud instance, run the following command: "
+      },
+      "top_retrieval_preview": [
+        {
+          "rank": 1,
+          "score": 0.76862806,
+          "section_title": "Create collection from another collection",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\collections.md"
+        },
+        {
+          "rank": 2,
+          "score": 0.73338705,
+          "section_title": "Setting up multitenancy",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\collections.md"
+        },
+        {
+          "rank": 3,
+          "score": 0.7263037,
+          "section_title": "How many collections can I create?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\faq_qdrant-fundamentals.md"
+        },
+        {
+          "rank": 4,
+          "score": 0.69197154,
+          "section_title": "How can I search without a vector?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\faq_qdrant-fundamentals.md"
+        },
+        {
+          "rank": 5,
+          "score": 0.6874902,
+          "section_title": "Should I create one Qdrant collection per user?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\faq_qdrant-fundamentals.md"
+        }
+      ],
+      "top_reranking_preview": [
+        {
+          "rerank_rank": 1,
+          "rerank_score": 0.9941907525062561,
+          "retrieval_rank": 1,
+          "section_title": "Create collection from another collection",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\collections.md"
+        },
+        {
+          "rerank_rank": 2,
+          "rerank_score": 0.9683318138122559,
+          "retrieval_rank": 9,
+          "section_title": "Create a collection",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\collections.md"
+        },
+        {
+          "rerank_rank": 3,
+          "rerank_score": 0.7550444006919861,
+          "retrieval_rank": 13,
+          "section_title": "Collection with multiple vectors",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\collections.md"
+        },
+        {
+          "rerank_rank": 4,
+          "rerank_score": 0.56232750415802,
+          "retrieval_rank": 15,
+          "section_title": "Named Vectors",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\vectors.md"
+        },
+        {
+          "rerank_rank": 5,
+          "rerank_score": 0.4416479468345642,
+          "retrieval_rank": 3,
+          "section_title": "How many collections can I create?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\faq_qdrant-fundamentals.md"
+        }
+      ]
+    },
+    {
+      "query_id": "7",
+      "query": "How do I reduce memory usage?",
+      "expected_source_contains": "qdrant",
+      "expected_section_keywords": [
+        "Memory"
+      ],
+      "retrieval": {
+        "hit_at_1": true,
+        "hit_at_5": true,
+        "hit_at_10": true,
+        "mrr": 1.0
+      },
+      "reranking": {
+        "hit_at_1": true,
+        "hit_at_5": true,
+        "mrr": 1.0
+      },
+      "rag": {
+        "citation_count": 5,
+        "context_chunk_count": 5,
+        "citation_coverage": 1.0,
+        "answer_preview": "Based on the retrieved documentation, here is the most relevant information for: How do I reduce memory usage?\n\n\n[1] How do I reduce memory usage?\nThe primary source of memory usage is vector data. There are several ways to address that: - Configure [Quantization](/documentation/guides/quantization/) to reduce the memory usage of vectors. - Configure on-disk vector storage The choice of the approach depends on your requirements. Read more about [configuring the optimal](/documentation/tutorials/"
+      },
+      "top_retrieval_preview": [
+        {
+          "rank": 1,
+          "score": 0.74110454,
+          "section_title": "How do I reduce memory usage?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\faq_database-optimization.md"
+        },
+        {
+          "rank": 2,
+          "score": 0.706138,
+          "section_title": "I configured on-disk vector storage, but memory usage is still high. Why?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\faq_database-optimization.md"
+        },
+        {
+          "rank": 3,
+          "score": 0.6841512,
+          "section_title": "How do you choose the machine configuration?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\faq_database-optimization.md"
+        },
+        {
+          "rank": 4,
+          "score": 0.6298297,
+          "section_title": "What is the maximum size of vector metadata that can be stored?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\faq_qdrant-fundamentals.md"
+        },
+        {
+          "rank": 5,
+          "score": 0.6285822,
+          "section_title": "My requests are very slow or time out. What should I do?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\faq_database-optimization.md"
+        }
+      ],
+      "top_reranking_preview": [
+        {
+          "rerank_rank": 1,
+          "rerank_score": 0.9997854828834534,
+          "retrieval_rank": 1,
+          "section_title": "How do I reduce memory usage?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\faq_database-optimization.md"
+        },
+        {
+          "rerank_rank": 2,
+          "rerank_score": 0.939732015132904,
+          "retrieval_rank": 8,
+          "section_title": "Create a collection",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\collections.md"
+        },
+        {
+          "rerank_rank": 3,
+          "rerank_score": 0.5480108857154846,
+          "retrieval_rank": 2,
+          "section_title": "I configured on-disk vector storage, but memory usage is still high. Why?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\faq_database-optimization.md"
+        },
+        {
+          "rerank_rank": 4,
+          "rerank_score": 0.04446685314178467,
+          "retrieval_rank": 3,
+          "section_title": "How do you choose the machine configuration?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\faq_database-optimization.md"
+        },
+        {
+          "rerank_rank": 5,
+          "rerank_score": 0.009349514730274677,
+          "retrieval_rank": 5,
+          "section_title": "My requests are very slow or time out. What should I do?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\faq_database-optimization.md"
+        }
+      ]
+    },
+    {
+      "query_id": "8",
+      "query": "What is the maximum vector dimension supported by Qdrant?",
+      "expected_source_contains": "qdrant",
+      "expected_section_keywords": [
+        "Vector",
+        "Dimension"
+      ],
+      "retrieval": {
+        "hit_at_1": true,
+        "hit_at_5": true,
+        "hit_at_10": true,
+        "mrr": 1.0
+      },
+      "reranking": {
+        "hit_at_1": true,
+        "hit_at_5": true,
+        "mrr": 1.0
+      },
+      "rag": {
+        "citation_count": 5,
+        "context_chunk_count": 5,
+        "citation_coverage": 1.0,
+        "answer_preview": "Based on the retrieved documentation, here is the most relevant information for: What is the maximum vector dimension supported by Qdrant?\n\n\n[1] Multivectors\n**Available as of v1.10.0** Qdrant supports the storing of a variable amount of same-shaped dense vectors in a single point. This means that instead of a single dense vector, you can upload a matrix of dense vectors. The length of the matrix is fixed, but the number of vectors in the matrix can be different for each point. Multivectors look"
+      },
+      "top_retrieval_preview": [
+        {
+          "rank": 1,
+          "score": 0.7714052,
+          "section_title": "Vectors",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\points.md"
+        },
+        {
+          "rank": 2,
+          "score": 0.75925994,
+          "section_title": "Datatypes",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\vectors.md"
+        },
+        {
+          "rank": 3,
+          "score": 0.75787175,
+          "section_title": "How does Qdrant handle different vector embeddings from various providers in the same collection?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\faq_qdrant-fundamentals.md"
+        },
+        {
+          "rank": 4,
+          "score": 0.75692254,
+          "section_title": "Multivectors",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\vectors.md"
+        },
+        {
+          "rank": 5,
+          "score": 0.7554802,
+          "section_title": "Vector Types",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\vectors.md"
+        }
+      ],
+      "top_reranking_preview": [
+        {
+          "rerank_rank": 1,
+          "rerank_score": 0.945254385471344,
+          "retrieval_rank": 4,
+          "section_title": "Multivectors",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\vectors.md"
+        },
+        {
+          "rerank_rank": 2,
+          "rerank_score": 0.9415643811225891,
+          "retrieval_rank": 2,
+          "section_title": "Datatypes",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\vectors.md"
+        },
+        {
+          "rerank_rank": 3,
+          "rerank_score": 0.6650646328926086,
+          "retrieval_rank": 1,
+          "section_title": "Vectors",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\points.md"
+        },
+        {
+          "rerank_rank": 4,
+          "rerank_score": 0.5701728463172913,
+          "retrieval_rank": 18,
+          "section_title": "Collection info",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\collections.md"
+        },
+        {
+          "rerank_rank": 5,
+          "rerank_score": 0.456293523311615,
+          "retrieval_rank": 17,
+          "section_title": "Collection with sparse vectors",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\collections.md"
+        }
+      ]
+    },
+    {
+      "query_id": "9",
+      "query": "What does the must clause do in Qdrant filtering?",
+      "expected_source_contains": "qdrant",
+      "expected_section_keywords": [
+        "Must"
+      ],
+      "retrieval": {
+        "hit_at_1": true,
+        "hit_at_5": true,
+        "hit_at_10": true,
+        "mrr": 1.0
+      },
+      "reranking": {
+        "hit_at_1": false,
+        "hit_at_5": true,
+        "mrr": 0.5
+      },
+      "rag": {
+        "citation_count": 5,
+        "context_chunk_count": 5,
+        "citation_coverage": 1.0,
+        "answer_preview": "Based on the retrieved documentation, here is the most relevant information for: What does the must clause do in Qdrant filtering?\n\n\n[1] Filtering clauses\nQdrant allows you to combine conditions in clauses. Clauses are different logical operations, such as `OR`, `AND`, and `NOT`. Clauses can be recursively nested into each other so that you can reproduce an arbitrary boolean expression. Let's take a look at the clauses implemented in Qdrant. Suppose we have a set of points with the following pay"
+      },
+      "top_retrieval_preview": [
+        {
+          "rank": 1,
+          "score": 0.8072281,
+          "section_title": "Must",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\filtering.md"
+        },
+        {
+          "rank": 2,
+          "score": 0.7866738,
+          "section_title": "Filtering clauses",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\filtering.md"
+        },
+        {
+          "rank": 3,
+          "score": 0.78136843,
+          "section_title": "Must Not",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\filtering.md"
+        },
+        {
+          "rank": 4,
+          "score": 0.7689009,
+          "section_title": "Payload types",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\payload.md"
+        },
+        {
+          "rank": 5,
+          "score": 0.75671595,
+          "section_title": "Query planning",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\search.md"
+        }
+      ],
+      "top_reranking_preview": [
+        {
+          "rerank_rank": 1,
+          "rerank_score": 0.9858959317207336,
+          "retrieval_rank": 2,
+          "section_title": "Filtering clauses",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\filtering.md"
+        },
+        {
+          "rerank_rank": 2,
+          "rerank_score": 0.878690242767334,
+          "retrieval_rank": 1,
+          "section_title": "Must",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\filtering.md"
+        },
+        {
+          "rerank_rank": 3,
+          "rerank_score": 0.8472514748573303,
+          "retrieval_rank": 6,
+          "section_title": "Filtering",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\filtering.md"
+        },
+        {
+          "rerank_rank": 4,
+          "rerank_score": 0.7271054983139038,
+          "retrieval_rank": 16,
+          "section_title": "Search API",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\search.md"
+        },
+        {
+          "rerank_rank": 5,
+          "rerank_score": 0.683455765247345,
+          "retrieval_rank": 4,
+          "section_title": "Payload types",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\payload.md"
+        }
+      ]
+    },
+    {
+      "query_id": "10",
+      "query": "What is Qdrant Payload?",
+      "expected_source_contains": "qdrant",
+      "expected_section_keywords": [
+        "Payload"
+      ],
+      "retrieval": {
+        "hit_at_1": true,
+        "hit_at_5": true,
+        "hit_at_10": true,
+        "mrr": 1.0
+      },
+      "reranking": {
+        "hit_at_1": false,
+        "hit_at_5": true,
+        "mrr": 0.3333333333333333
+      },
+      "rag": {
+        "citation_count": 5,
+        "context_chunk_count": 5,
+        "citation_coverage": 1.0,
+        "answer_preview": "Based on the retrieved documentation, here is the most relevant information for: What is Qdrant Payload?\n\n\n[1] What is Qdrant?\n[Qdrant](https://github.com/qdrant/qdrant) \"is a vector similarity search engine that provides a production-ready service with a convenient API to store, search, and manage points (i.e. vectors) with an additional payload.\" You can think of the payloads as additional pieces of information that can help you hone in on your search and also receive useful information that y"
+      },
+      "top_retrieval_preview": [
+        {
+          "rank": 1,
+          "score": 0.83887005,
+          "section_title": "Payload",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\payload.md"
+        },
+        {
+          "rank": 2,
+          "score": 0.7916328,
+          "section_title": "Update payload",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\payload.md"
+        },
+        {
+          "rank": 3,
+          "score": 0.7913244,
+          "section_title": "What is Qdrant?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        },
+        {
+          "rank": 4,
+          "score": 0.73926234,
+          "section_title": "Points",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\points.md"
+        },
+        {
+          "rank": 5,
+          "score": 0.7347142,
+          "section_title": "Vector Storage",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\vectors.md"
+        }
+      ],
+      "top_reranking_preview": [
+        {
+          "rerank_rank": 1,
+          "rerank_score": 0.9984411597251892,
+          "retrieval_rank": 3,
+          "section_title": "What is Qdrant?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        },
+        {
+          "rerank_rank": 2,
+          "rerank_score": 0.9573757648468018,
+          "retrieval_rank": 7,
+          "section_title": "High-Level Overview of Qdrant's Architecture",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        },
+        {
+          "rerank_rank": 3,
+          "rerank_score": 0.8480644822120667,
+          "retrieval_rank": 1,
+          "section_title": "Payload",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\payload.md"
+        },
+        {
+          "rerank_rank": 4,
+          "rerank_score": 0.5360760688781738,
+          "retrieval_rank": 4,
+          "section_title": "Points",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\points.md"
+        },
+        {
+          "rerank_rank": 5,
+          "rerank_score": 0.5048449039459229,
+          "retrieval_rank": 2,
+          "section_title": "Update payload",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\payload.md"
+        }
+      ]
+    },
+    {
+      "query_id": "11",
+      "query": "What are Qdrant Points?",
+      "expected_source_contains": "qdrant",
+      "expected_section_keywords": [
+        "Points"
+      ],
+      "retrieval": {
+        "hit_at_1": true,
+        "hit_at_5": true,
+        "hit_at_10": true,
+        "mrr": 1.0
+      },
+      "reranking": {
+        "hit_at_1": false,
+        "hit_at_5": true,
+        "mrr": 0.3333333333333333
+      },
+      "rag": {
+        "citation_count": 5,
+        "context_chunk_count": 5,
+        "citation_coverage": 1.0,
+        "answer_preview": "Based on the retrieved documentation, here is the most relevant information for: What are Qdrant Points?\n\n\n[1] High-Level Overview of Qdrant's Architecture\n![qdrant](https://raw.githubusercontent.com/ramonpzg/mlops-sydney-2023/main/images/qdrant_overview_high_level.png) The diagram above represents a high-level overview of some of the main components of Qdrant. Here are the terminologies you should get familiar with. - [Collections](/documentation/concepts/collections/): A collection is a named "
+      },
+      "top_retrieval_preview": [
+        {
+          "rank": 1,
+          "score": 0.78470445,
+          "section_title": "Points",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\points.md"
+        },
+        {
+          "rank": 2,
+          "score": 0.7813443,
+          "section_title": "Why collection info shows inaccurate number of points?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\faq_qdrant-fundamentals.md"
+        },
+        {
+          "rank": 3,
+          "score": 0.7566862,
+          "section_title": "Approximate point and vector counts",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\collections.md"
+        },
+        {
+          "rank": 4,
+          "score": 0.7518312,
+          "section_title": "Upload points",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\points.md"
+        },
+        {
+          "rank": 5,
+          "score": 0.7330613,
+          "section_title": "What is Qdrant?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        }
+      ],
+      "top_reranking_preview": [
+        {
+          "rerank_rank": 1,
+          "rerank_score": 0.8100703954696655,
+          "retrieval_rank": 15,
+          "section_title": "High-Level Overview of Qdrant's Architecture",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        },
+        {
+          "rerank_rank": 2,
+          "rerank_score": 0.7965736985206604,
+          "retrieval_rank": 5,
+          "section_title": "What is Qdrant?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        },
+        {
+          "rerank_rank": 3,
+          "rerank_score": 0.6830369234085083,
+          "retrieval_rank": 1,
+          "section_title": "Points",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\points.md"
+        },
+        {
+          "rerank_rank": 4,
+          "rerank_score": 0.3573853075504303,
+          "retrieval_rank": 6,
+          "section_title": "Idempotence",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\points.md"
+        },
+        {
+          "rerank_rank": 5,
+          "rerank_score": 0.2711452543735504,
+          "retrieval_rank": 16,
+          "section_title": "Inference",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\points.md"
+        }
+      ]
+    },
+    {
+      "query_id": "12",
+      "query": "What are Qdrant Metrics?",
+      "expected_source_contains": "qdrant",
+      "expected_section_keywords": [
+        "Metrics"
+      ],
+      "retrieval": {
+        "hit_at_1": false,
+        "hit_at_5": true,
+        "hit_at_10": true,
+        "mrr": 0.5
+      },
+      "reranking": {
+        "hit_at_1": true,
+        "hit_at_5": true,
+        "mrr": 1.0
+      },
+      "rag": {
+        "citation_count": 5,
+        "context_chunk_count": 5,
+        "citation_coverage": 1.0,
+        "answer_preview": "Based on the retrieved documentation, here is the most relevant information for: What are Qdrant Metrics?\n\n\n[1] Metrics\nThere are many ways to estimate the similarity of vectors with each other. In Qdrant terms, these ways are called metrics. The choice of metric depends on the vectors obtained and, in particular, on the neural network encoder training method. Qdrant supports these most popular types of metrics: * Dot product: `Dot` - <https://en.wikipedia.org/wiki/Dot_product> * Cosine similari"
+      },
+      "top_retrieval_preview": [
+        {
+          "rank": 1,
+          "score": 0.7823597,
+          "section_title": "High-Level Overview of Qdrant's Architecture",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        },
+        {
+          "rank": 2,
+          "score": 0.7697942,
+          "section_title": "Metrics",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\search.md"
+        },
+        {
+          "rank": 3,
+          "score": 0.7606341,
+          "section_title": "Approximate point and vector counts",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\collections.md"
+        },
+        {
+          "rank": 4,
+          "score": 0.74919754,
+          "section_title": "Why collection info shows inaccurate number of points?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\faq_qdrant-fundamentals.md"
+        },
+        {
+          "rank": 5,
+          "score": 0.74538875,
+          "section_title": "What is Qdrant?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        }
+      ],
+      "top_reranking_preview": [
+        {
+          "rerank_rank": 1,
+          "rerank_score": 0.8718163371086121,
+          "retrieval_rank": 2,
+          "section_title": "Metrics",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\search.md"
+        },
+        {
+          "rerank_rank": 2,
+          "rerank_score": 0.7521376013755798,
+          "retrieval_rank": 1,
+          "section_title": "High-Level Overview of Qdrant's Architecture",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        },
+        {
+          "rerank_rank": 3,
+          "rerank_score": 0.42580315470695496,
+          "retrieval_rank": 7,
+          "section_title": "Collections",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\collections.md"
+        },
+        {
+          "rerank_rank": 4,
+          "rerank_score": 0.3957788050174713,
+          "retrieval_rank": 5,
+          "section_title": "What is Qdrant?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        },
+        {
+          "rerank_rank": 5,
+          "rerank_score": 0.08131063729524612,
+          "retrieval_rank": 11,
+          "section_title": "Multivectors",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\vectors.md"
+        }
+      ]
+    },
+    {
+      "query_id": "13",
+      "query": "What are Dense Vectors?",
+      "expected_source_contains": "qdrant",
+      "expected_section_keywords": [
+        "Dense",
+        "Vectors"
+      ],
+      "retrieval": {
+        "hit_at_1": true,
+        "hit_at_5": true,
+        "hit_at_10": true,
+        "mrr": 1.0
+      },
+      "reranking": {
+        "hit_at_1": true,
+        "hit_at_5": true,
+        "mrr": 1.0
+      },
+      "rag": {
+        "citation_count": 5,
+        "context_chunk_count": 5,
+        "citation_coverage": 1.0,
+        "answer_preview": "Based on the retrieved documentation, here is the most relevant information for: What are Dense Vectors?\n\n\n[1] Dense Vectors\nThis is the most common type of vector. It is a simple list of numbers, it has a fixed length and each element of the list is a floating-point number. It looks like this: ```json // A piece of a real-world dense vector [ -0.013052909, 0.020387933, -0.007869, -0.11111383, -0.030188112, -0.0053388323, 0.0010654867, 0.072027855, -0.04167721, 0.014839341, -0.032948174, -0.0629"
+      },
+      "top_retrieval_preview": [
+        {
+          "rank": 1,
+          "score": 0.7629252,
+          "section_title": "Dense Vectors",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\vectors.md"
+        },
+        {
+          "rank": 2,
+          "score": 0.76057637,
+          "section_title": "Sparse vectors",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\points.md"
+        },
+        {
+          "rank": 3,
+          "score": 0.7573168,
+          "section_title": "Vectors",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\points.md"
+        },
+        {
+          "rank": 4,
+          "score": 0.7448637,
+          "section_title": "Vectors",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\vectors.md"
+        },
+        {
+          "rank": 5,
+          "score": 0.740014,
+          "section_title": "Datatypes",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\vectors.md"
+        }
+      ],
+      "top_reranking_preview": [
+        {
+          "rerank_rank": 1,
+          "rerank_score": 0.7287601828575134,
+          "retrieval_rank": 1,
+          "section_title": "Dense Vectors",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\vectors.md"
+        },
+        {
+          "rerank_rank": 2,
+          "rerank_score": 0.5862723588943481,
+          "retrieval_rank": 2,
+          "section_title": "Sparse vectors",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\points.md"
+        },
+        {
+          "rerank_rank": 3,
+          "rerank_score": 0.4765291213989258,
+          "retrieval_rank": 3,
+          "section_title": "Vectors",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\points.md"
+        },
+        {
+          "rerank_rank": 4,
+          "rerank_score": 0.22053778171539307,
+          "retrieval_rank": 6,
+          "section_title": "Sparse Vectors",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\vectors.md"
+        },
+        {
+          "rerank_rank": 5,
+          "rerank_score": 0.16107118129730225,
+          "retrieval_rank": 5,
+          "section_title": "Datatypes",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\vectors.md"
+        }
+      ]
+    },
+    {
+      "query_id": "14",
+      "query": "What is Qdrant?",
+      "expected_source_contains": "qdrant",
+      "expected_section_keywords": [
+        "Qdrant"
+      ],
+      "retrieval": {
+        "hit_at_1": true,
+        "hit_at_5": true,
+        "hit_at_10": true,
+        "mrr": 1.0
+      },
+      "reranking": {
+        "hit_at_1": true,
+        "hit_at_5": true,
+        "mrr": 1.0
+      },
+      "rag": {
+        "citation_count": 5,
+        "context_chunk_count": 5,
+        "citation_coverage": 1.0,
+        "answer_preview": "Based on the retrieved documentation, here is the most relevant information for: What is Qdrant?\n\n\n[1] What is Qdrant?\n[Qdrant](https://github.com/qdrant/qdrant) \"is a vector similarity search engine that provides a production-ready service with a convenient API to store, search, and manage points (i.e. vectors) with an additional payload.\" You can think of the payloads as additional pieces of information that can help you hone in on your search and also receive useful information that you can g"
+      },
+      "top_retrieval_preview": [
+        {
+          "rank": 1,
+          "score": 0.73789394,
+          "section_title": "What is Qdrant?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        },
+        {
+          "rank": 2,
+          "score": 0.7156471,
+          "section_title": "Does Qdrant support a full-text search or a hybrid search?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\faq_qdrant-fundamentals.md"
+        },
+        {
+          "rank": 3,
+          "score": 0.6914179,
+          "section_title": "Payload",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\payload.md"
+        },
+        {
+          "rank": 4,
+          "score": 0.6871958,
+          "section_title": "Vector Storage",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\vectors.md"
+        },
+        {
+          "rank": 5,
+          "score": 0.6828736,
+          "section_title": "How does Qdrant handle real-time data updates and search?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\faq_qdrant-fundamentals.md"
+        }
+      ],
+      "top_reranking_preview": [
+        {
+          "rerank_rank": 1,
+          "rerank_score": 0.9996311664581299,
+          "retrieval_rank": 1,
+          "section_title": "What is Qdrant?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        },
+        {
+          "rerank_rank": 2,
+          "rerank_score": 0.9954679012298584,
+          "retrieval_rank": 2,
+          "section_title": "Does Qdrant support a full-text search or a hybrid search?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\faq_qdrant-fundamentals.md"
+        },
+        {
+          "rerank_rank": 3,
+          "rerank_score": 0.7349280118942261,
+          "retrieval_rank": 6,
+          "section_title": "How does Qdrant handle different vector embeddings from various providers in the same collection?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\faq_qdrant-fundamentals.md"
+        },
+        {
+          "rerank_rank": 4,
+          "rerank_score": 0.6271862983703613,
+          "retrieval_rank": 20,
+          "section_title": "High-Level Overview of Qdrant's Architecture",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        },
+        {
+          "rerank_rank": 5,
+          "rerank_score": 0.4792768359184265,
+          "retrieval_rank": 12,
+          "section_title": "Query API",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\search.md"
+        }
+      ]
+    },
+    {
+      "query_id": "15",
+      "query": "What Are Vector Databases?",
+      "expected_source_contains": "qdrant",
+      "expected_section_keywords": [
+        "Vector",
+        "Databases"
+      ],
+      "retrieval": {
+        "hit_at_1": false,
+        "hit_at_5": true,
+        "hit_at_10": true,
+        "mrr": 0.5
+      },
+      "reranking": {
+        "hit_at_1": true,
+        "hit_at_5": true,
+        "mrr": 1.0
+      },
+      "rag": {
+        "citation_count": 5,
+        "context_chunk_count": 5,
+        "citation_coverage": 1.0,
+        "answer_preview": "Based on the retrieved documentation, here is the most relevant information for: What Are Vector Databases?\n\n\n[1] What Are Vector Databases?\n![dbs](https://raw.githubusercontent.com/ramonpzg/mlops-sydney-2023/main/images/databases.png) Vector databases are a type of database designed to store and query high-dimensional vectors efficiently. In traditional [OLTP](https://www.ibm.com/topics/oltp) and [OLAP](https://www.ibm.com/topics/olap) databases (as seen in the image above), data is organized i"
+      },
+      "top_retrieval_preview": [
+        {
+          "rank": 1,
+          "score": 0.84728867,
+          "section_title": "Introduction",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        },
+        {
+          "rank": 2,
+          "score": 0.83353686,
+          "section_title": "What Are Vector Databases?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        },
+        {
+          "rank": 3,
+          "score": 0.8300832,
+          "section_title": "Why do we need Vector Databases?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        },
+        {
+          "rank": 4,
+          "score": 0.78471434,
+          "section_title": "Next Steps",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        },
+        {
+          "rank": 5,
+          "score": 0.7380708,
+          "section_title": "What is Qdrant?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        }
+      ],
+      "top_reranking_preview": [
+        {
+          "rerank_rank": 1,
+          "rerank_score": 0.9999663829803467,
+          "retrieval_rank": 2,
+          "section_title": "What Are Vector Databases?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        },
+        {
+          "rerank_rank": 2,
+          "rerank_score": 0.9993878602981567,
+          "retrieval_rank": 1,
+          "section_title": "Introduction",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        },
+        {
+          "rerank_rank": 3,
+          "rerank_score": 0.9798417091369629,
+          "retrieval_rank": 3,
+          "section_title": "Why do we need Vector Databases?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        },
+        {
+          "rerank_rank": 4,
+          "rerank_score": 0.7002018094062805,
+          "retrieval_rank": 5,
+          "section_title": "What is Qdrant?",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        },
+        {
+          "rerank_rank": 5,
+          "rerank_score": 0.15380588173866272,
+          "retrieval_rank": 4,
+          "section_title": "Next Steps",
+          "source_path": "data\\raw\\tech_docs\\qdrant\\what-is-qdrant.md"
+        }
+      ]
+    }
+  ]
+}
