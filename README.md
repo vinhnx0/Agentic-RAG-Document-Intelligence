@@ -1,171 +1,139 @@
-# AI Document Intelligence System (Agentic RAG-based)
+# AI Document Intelligence System (Agentic RAG)
 
-## Overview
+A production-oriented Retrieval-Augmented Generation (RAG) system for ingesting structured documents, retrieving relevant context, reranking results, and generating citation-based answers.
 
-This project aims to build a production-style AI system that can:
+The project focuses on **reliable document retrieval**, not just chatbot generation. The current baseline is tested on technical documentation, with public financial reports planned as the main real-world use case.
 
-- Ingest documents (PDF, markdown, text)
-- Extract structure (sections, layout)
-- Convert documents into structured knowledge
-- Perform retrieval-augmented generation (RAG)
-- Provide answers with citations
-- Evaluate retrieval and answer quality
+## Key Features
 
-The focus is on **building a clean, modular, and scalable pipeline**, rather than a quick demo.
+- Modular document pipeline: ingestion → parsing → chunking → embedding → retrieval → reranking → RAG → evaluation
+- Heading-based document parsing and section-aware chunking
+- Qdrant vector database integration with metadata-rich payloads
+- Cross-encoder reranking for improved context selection
+- Extractive RAG answers with source citations
+- Evaluation pipeline with retrieval, reranking, and citation metrics
 
+## Tech Stack
 
-## Why This Project
+- Python
+- SentenceTransformers
+- Qdrant
+- Cross-encoder reranker
+- YAML configuration
+- JSON stage artifacts
 
-Most RAG projects skip directly to LLMs.
+## Current Status
 
-This project focuses on:
-- data pipeline quality
-- document structure understanding
-- retrieval reliability
-- system design for real-world use cases
+The end-to-end CLI baseline is complete for Dataset A: `tech_docs`.
 
-The long-term goal is to support:
-- financial documents
-- enterprise knowledge systems
-- agentic reasoning workflows
+Completed:
 
+- Ingestion for Markdown and text documents
+- Structured parsing with headings and section paths
+- Section-aware chunking
+- Embedding with `BAAI/bge-small-en-v1.5`
+- Qdrant vector indexing
+- Semantic retrieval
+- Reranking with `BAAI/bge-reranker-base`
+- Extractive answer generation with citations
+- Baseline evaluation on 15 test queries
 
-## Current Scope
+## Pipeline Overview
 
-This project is being developed with a deliberate, production-oriented approach:
+```text
+Raw Documents
+  → Ingestion
+  → Parsing
+  → Section-aware Chunking
+  → Embedding
+  → Qdrant Vector Store
+  → Retrieval
+  → Reranking
+  → Citation-based RAG Answer
+  → Evaluation
+```
 
-- Building the foundation pipeline first (not jumping directly into LLM/RAG)
-- Using Dataset A (technical documentation) to validate system architecture and workflow
-- Planning Dataset B (financial reports) as the main real-world production use case
+## Baseline Evaluation
 
+Evaluation was run on 15 manually designed technical-documentation queries, covering keyword-based, section-based, and paraphrased questions.
 
-## Current Development Status
+| Component | Metric | Score |
+|---|---:|---:|
+| Retrieval | Hit@1 | 0.73 |
+| Retrieval | Hit@5 | 1.00 |
+| Retrieval | Hit@10 | 1.00 |
+| Retrieval | MRR | 0.86 |
+| Reranking | Hit@1 | 0.73 |
+| Reranking | Hit@5 | 1.00 |
+| Reranking | MRR | 0.83 |
+| RAG | Avg. citation coverage | 1.00 |
+| RAG | Avg. citation count | 5.00 |
 
-**Phase:** Data Ingestion (Completed)  
-**Next Phase:** Markdown Parsing
+The baseline confirms that the system can consistently retrieve the expected documentation within the top 5 results. The next improvement is to make embeddings more structure-aware by including section titles and section paths in the embedding input.
 
+Full evaluation outputs:
 
-## Implemented Components
-
-### 1. Schema Layer
-- `RawDocument` (active)
-- `ParsedDocument`, `DocumentSection`, `DocumentChunk` (planned)
-
-### 2. Ingestion System
-- Base loader abstraction
-- Markdown loader
-- Text loader
-- Loader registry pattern
-
-### 3. Ingestion Pipeline
-- Config-driven ingestion
-- Recursive file discovery
-- File-type filtering
-- Normalized document output
-
-### 4. Dataset (Current)
-- Technical documentation corpus
-  - FastAPI docs
-  - Qdrant docs
-- ~17 markdown documents
-
+- `data/processed/tech_docs/evaluation/evaluation_summary.json`
+- `data/processed/tech_docs/evaluation/evaluation_report.json`
 
 ## Project Structure
 
+```text
+configs/          # corpus configuration
+ingestion/        # document loading
+parsing/          # structured parsing
+chunking/         # section-aware chunking
+embedding/        # embedding generation
+vectorstore/      # Qdrant integration
+retrieval/        # vector retrieval
+reranking/        # cross-encoder reranking
+rag/              # answer generation and citations
+evaluation/       # metrics and evaluation pipeline
+data/             # raw, processed, and evaluation data
+run_*.py          # CLI runners for each pipeline stage
 ```
-Agentic-RAG-Document-Intelligence/
-├── configs/
-│   └── corpora/
-│       └── tech_docs.yaml
-├── schemas/
-│   └── documents.py
-├── ingestion/
-│   ├── loaders.py
-│   └── pipeline.py
-├── data/
-│   └── raw/
-│       └── tech_docs/
-├── run_ingestion.py
-├── requirements.txt
-└── README.md
-
-````
-
 
 ## Setup
 
-### 1. Create virtual environment
+Create virtual environment:
 ```bash
 python -m venv .venv
-````
-
-### 2. Activate environment
-
-Windows (PowerShell):
-
-```bash
 .venv\Scripts\Activate.ps1
-```
-
-### 3. Install dependencies
-
-```bash
 pip install -r requirements.txt
 ```
 
+Start Qdrant:
 
-## Run Ingestion
+```bash
+docker run -p 6333:6333 -p 6334:6334 qdrant/qdrant
+```
+
+## Run the Pipeline
+
+Run each stage in order:
 
 ```bash
 python run_ingestion.py
+python run_parsing.py
+python run_chunking.py
+python run_embedding.py
+python run_vectorstore.py
+python run_retrieval.py
+python run_reranking.py
+python run_rag.py
+python run_evaluation.py
 ```
 
-This will:
+## Current Limitations
 
-* scan `data/raw/tech_docs`
-* load markdown/text files
-* output normalized documents
-
-
-## Current Pipeline Flow
-
-```
-Raw Documents (.md, .txt)
-    ↓
-Loaders (MarkdownLoader / TextLoader)
-    ↓
-IngestionPipeline
-    ↓
-RawDocument objects
-```
-
-
-## Known Limitations
-
-* Markdown content is not yet parsed into sections
-* Titles may contain anchor artifacts (e.g. `{ #... }`)
-* HTML/style noise is not removed
-* No document versioning or stable IDs yet
-* No persistence or indexing layer
-
+- PDF ingestion and parsing are not fully implemented yet.
+- Current embedding baseline mainly uses chunk body text; section titles and paths are stored as metadata but not fully included in embedding input.
+- Current answer generation is extractive and does not call an external LLM yet.
+- Dataset A is small and mainly used to validate the architecture.
 
 ## Next Steps
 
-* Implement markdown parser:
-
-  * extract headings
-  * build section hierarchy
-* Add structured parsing output (`ParsedDocument`)
-* Implement section-aware chunking
-* Add embeddings and vector database (Qdrant)
-* Build retrieval + reranking
-* Implement RAG pipeline with citations
-
-
-## Design Principles
-
-* Modular pipeline (clear separation of stages)
-* Config-driven behavior
-* Strong data contracts (schemas)
-* Avoid premature optimization
-* Build foundation before adding LLM layers
+- Add heading-aware embedding input using section title, section path, document title, and chunk text.
+- Create a separate Qdrant collection for the improved retrieval version.
+- Re-run the same evaluation set and compare before/after retrieval metrics.
+- Expand the system to Dataset B: public financial reports and SEC 10-K filings.
