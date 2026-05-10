@@ -4,5 +4,6 @@ __pycache__/
 .DS_Store
 data/processed/*
 !data/processed/tech_docs/
+data/processed/tech_docs/*
 !data/processed/tech_docs/evaluation/
 qdrant_storage/
