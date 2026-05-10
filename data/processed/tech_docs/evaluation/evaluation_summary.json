@@ -1,0 +1,19 @@
+{
+  "query_count": 15,
+  "retrieval_summary": {
+    "hit_at_1": 0.7333333333333333,
+    "hit_at_5": 1,
+    "hit_at_10": 1,
+    "mrr": 0.8555555555555555
+  },
+  "reranking_summary": {
+    "hit_at_1": 0.7333333333333333,
+    "hit_at_5": 1,
+    "mrr": 0.8333333333333334
+  },
+  "rag_summary": {
+    "avg_citation_coverage": 1.0,
+    "avg_citation_count": 5
+  },
+  "failed_or_weak_queries": []
+}
