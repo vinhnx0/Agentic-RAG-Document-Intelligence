@@ -1,3 +1,4 @@
 pyyaml
 sentence-transformers
 qdrant-client
+docling

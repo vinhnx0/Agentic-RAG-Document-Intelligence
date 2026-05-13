@@ -1,0 +1,10 @@
+corpus_name: financial_reports
+raw_data_dir: data/raw/financial_reports
+processed_data_dir: data/processed/financial_reports
+
+file_types:
+  - pdf
+
+ingestion:
+  recursive: true
+  encoding: utf-8

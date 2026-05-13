@@ -8,9 +8,12 @@ from pathlib import Path
 from ingestion.pipeline import IngestionPipeline
 from schemas.documents import RawDocument
 from utils.io import ensure_stage_output_dir, to_jsonable, write_json
+import os
+
+os.environ["HF_HUB_DISABLE_SYMLINKS"] = "1"
 
 
-CONFIG_PATH = "configs/corpora/tech_docs.yaml"
+CONFIG_PATH = "configs/corpora/financial_reports.yaml"
 
 
 def utc_now_compact() -> str:
