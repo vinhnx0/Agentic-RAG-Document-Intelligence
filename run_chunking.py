@@ -11,7 +11,7 @@ from parsing.pipeline import ParsingPipeline
 from utils.io import ensure_stage_output_dir, to_jsonable, write_json
 
 
-CONFIG_PATH = "configs/corpora/tech_docs.yaml"
+CONFIG_PATH = "configs/corpora/financial_reports.yaml"
 
 
 def build_summary(chunks: list[Any]) -> dict[str, Any]:

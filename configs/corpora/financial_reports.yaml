@@ -11,3 +11,9 @@ ingestion:
 
 parser:
   type: financial_pdf_structured
+
+chunking:
+  strategy: section_then_tokens
+  max_tokens: 500
+  overlap_tokens: 100
+  min_chunk_chars: 150
