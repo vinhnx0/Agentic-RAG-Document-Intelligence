@@ -12,7 +12,7 @@ from parsing.pipeline import ParsingPipeline
 from utils.io import ensure_stage_output_dir, to_jsonable, write_json
 
 
-CONFIG_PATH = "configs/corpora/tech_docs.yaml"
+CONFIG_PATH = "configs/corpora/financial_reports.yaml"
 
 
 def build_summary(embedded_chunks: list[Any]) -> dict[str, Any]:
@@ -30,11 +30,19 @@ def build_summary(embedded_chunks: list[Any]) -> dict[str, Any]:
         }
     )
 
+    strategies = sorted(
+        {
+            chunk.metadata.get("embedding_input_strategy")
+            for chunk in embedded_chunks
+        }
+    )
+
     return {
         "embedded_chunk_count": len(embedded_chunks),
         "document_count_with_embeddings": len(doc_counts),
         "embedding_models": model_names,
         "embedding_dimensions": sorted(embedding_dimensions),
+        "embedding_input_strategies": strategies,
         "chunks_per_document": dict(sorted(doc_counts.items())),
         "embeddings_preview": [
             {
@@ -42,8 +50,20 @@ def build_summary(embedded_chunks: list[Any]) -> dict[str, Any]:
                 "doc_id": chunk.doc_id,
                 "chunk_index": chunk.chunk_index,
                 "section_title": chunk.section_title,
+                "company": chunk.metadata.get("company"),
+                "ticker": chunk.metadata.get("ticker"),
+                "fiscal_year": chunk.metadata.get("fiscal_year"),
+                "form_item": chunk.metadata.get("form_item"),
+                "section_type": chunk.metadata.get("section_type"),
                 "embedding_model": chunk.embedding_model,
                 "embedding_dimension": len(chunk.embedding),
+                "embedding_input_strategy": chunk.metadata.get(
+                    "embedding_input_strategy"
+                ),
+                "embedding_text_preview": chunk.metadata.get(
+                    "embedding_text_preview",
+                    "",
+                ),
                 "text_preview": chunk.text[:200],
             }
             for chunk in embedded_chunks[:10]
