@@ -9,10 +9,10 @@ from rag.pipeline import RAGPipeline
 from utils.io import ensure_stage_output_dir, to_jsonable, write_json
 
 
-CONFIG_PATH = "configs/corpora/tech_docs.yaml"
+CONFIG_PATH = "configs/corpora/financial_reports.yaml"
 
 
-DEFAULT_QUERY = "How do I create a Qdrant collection?"
+DEFAULT_QUERY = "How did Apple describe competition?"
 
 
 def build_summary(rag_output: dict[str, Any]) -> dict[str, Any]:
