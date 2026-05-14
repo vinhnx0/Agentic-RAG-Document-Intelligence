@@ -8,3 +8,6 @@ file_types:
 ingestion:
   recursive: true
   encoding: utf-8
+
+parser:
+  type: financial_pdf_structured
