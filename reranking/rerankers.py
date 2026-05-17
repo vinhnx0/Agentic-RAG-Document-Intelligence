@@ -96,6 +96,12 @@ class CrossEncoderReranker(BaseReranker):
 
     @staticmethod
     def _build_candidate_text(result: dict[str, Any]) -> str:
+        metadata = result.get("metadata", {}) or {}
+
+        company = metadata.get("company") or ""
+        fiscal_year = metadata.get("fiscal_year") or ""
+        form_item = metadata.get("form_item") or ""
+        section_type = metadata.get("section_type") or ""
         section_title = result.get("section_title") or ""
         section_path = result.get("section_path") or []
         text = result.get("text") or ""
@@ -103,9 +109,13 @@ class CrossEncoderReranker(BaseReranker):
         path_text = " > ".join(section_path)
 
         return (
+            f"Company: {company}\n"
+            f"Fiscal year: {fiscal_year}\n"
+            f"Form item: {form_item}\n"
+            f"Section type: {section_type}\n"
             f"Section title: {section_title}\n"
             f"Section path: {path_text}\n\n"
-            f"{text}"
+            f"Content:\n{text}"
         ).strip()
 
 
