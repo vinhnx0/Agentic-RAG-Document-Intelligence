@@ -15,14 +15,12 @@ YEAR_PATTERN = re.compile(r"(20\d{2})")
 
 
 COMPANY_TICKER_MAP = {
-    "apple": "AAPL",
-    "microsoft": "MSFT",
-    "amazon": "AMZN",
-    "google": "GOOGL",
-    "alphabet": "GOOGL",
-    "nvidia": "NVDA",
-    "tesla": "TSLA",
-    "meta": "META",
+    "apple": ("Apple", "AAPL"),
+    "aapl": ("Apple", "AAPL"),
+    "microsoft": ("Microsoft", "MSFT"),
+    "msft": ("Microsoft", "MSFT"),
+    "amazon": ("Amazon", "AMZN"),
+    "amzn": ("Amazon", "AMZN"),
 }
 
 
@@ -301,8 +299,14 @@ class DoclingPDFLoader(BaseLoader):
         parts = re.split(r"[_\-\s]+", stem)
 
         company_key = parts[0] if parts else stem
-        company = company_key.title()
-        ticker = COMPANY_TICKER_MAP.get(company_key)
+
+        company_ticker = COMPANY_TICKER_MAP.get(company_key)
+
+        if company_ticker:
+            company, ticker = company_ticker
+        else:
+            company = company_key.title()
+            ticker = None
 
         year_match = YEAR_PATTERN.search(stem)
         fiscal_year = int(year_match.group(1)) if year_match else None
