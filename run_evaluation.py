@@ -8,7 +8,7 @@ from evaluation.pipeline import EvaluationPipeline
 from utils.io import ensure_stage_output_dir, write_json
 
 
-CONFIG_PATH = "configs/corpora/tech_docs.yaml"
+CONFIG_PATH = "configs/corpora/financial_reports.yaml"
 
 
 def build_summary(evaluation_report: dict[str, Any]) -> dict[str, Any]:
@@ -21,6 +21,10 @@ def build_summary(evaluation_report: dict[str, Any]) -> dict[str, Any]:
             {
                 "query_id": report["query_id"],
                 "query": report["query"],
+                "expected_company": report.get("expected_company"),
+                "expected_years": report.get("expected_years"),
+                "expected_section_types": report.get("expected_section_types"),
+                "expected_form_items": report.get("expected_form_items"),
                 "retrieval_hit_at_5": report["retrieval"]["hit_at_5"],
                 "reranking_hit_at_5": report["reranking"]["hit_at_5"],
                 "top_reranking_preview": report["top_reranking_preview"][:3],
@@ -41,8 +45,8 @@ def main() -> None:
         pipeline.get_output_stage_name(),
     )
 
-    report_path = output_dir / "evaluation_report_after.json"
-    summary_path = output_dir / "evaluation_summary_after.json"
+    report_path = output_dir / "baseline_v1_report.json"
+    summary_path = output_dir / "baseline_v1_summary.json"
 
     write_json(report_path, evaluation_report)
     write_json(summary_path, build_summary(evaluation_report))

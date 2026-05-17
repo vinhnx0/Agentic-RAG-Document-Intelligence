@@ -46,3 +46,7 @@ rag:
   answer_generator: extractive
   max_context_chunks: 5
   max_context_chars_per_chunk: 1200
+
+evaluation:
+  testset_path: data/evaluation/financial_reports/eval_v1_fixed.json
+  output_stage_name: evaluation
