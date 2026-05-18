@@ -57,6 +57,7 @@ class RetrievalPipeline:
         query: str,
         top_k: int | None = None,
         score_threshold: float | None = None,
+        metadata_filters: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
         clean_query = query.strip()
         if not clean_query:
@@ -87,6 +88,7 @@ class RetrievalPipeline:
             query_vector=query_vectors[0],
             top_k=resolved_top_k,
             score_threshold=resolved_score_threshold,
+            metadata_filters=metadata_filters,
         )
 
         return {
@@ -97,6 +99,7 @@ class RetrievalPipeline:
             "score_threshold": resolved_score_threshold,
             "result_count": len(results),
             "results": results,
+            "metadata_filters": metadata_filters or {},
         }
 
     def get_processed_data_dir(self) -> Path:
