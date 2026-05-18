@@ -10,7 +10,7 @@ from utils.io import ensure_stage_output_dir, write_json
 from vectorstore.pipeline import VectorStorePipeline
 
 
-CONFIG_PATH = "configs/corpora/tech_docs.yaml"
+CONFIG_PATH = "configs/corpora/financial_reports.yaml"
 
 
 def main() -> None:

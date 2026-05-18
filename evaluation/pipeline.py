@@ -53,8 +53,6 @@ class EvaluationPipeline:
         for item in eval_queries:
             query_id = item["query_id"]
             query = item["query"]
-            expected_source_contains = item.get("expected_source_contains")
-            expected_section_keywords = item.get("expected_section_keywords", [])
 
             reranking_output = self.reranking_pipeline.run(
                 query=query,
@@ -75,50 +73,56 @@ class EvaluationPipeline:
             query_report = {
                 "query_id": query_id,
                 "query": query,
-                "expected_source_contains": expected_source_contains,
-                "expected_section_keywords": expected_section_keywords,
+                "expected_behavior": item.get("expected_behavior", "answer"),
+
+                # Dataset B financial expected targets
+                "expected_company": item.get("expected_company"),
+                "expected_years": item.get("expected_years", []),
+                "expected_section_types": item.get("expected_section_types", []),
+                "expected_form_items": item.get("expected_form_items", []),
+
+                # Dataset A fallback fields
+                "expected_source_contains": item.get("expected_source_contains"),
+                "expected_section_keywords": item.get(
+                    "expected_section_keywords",
+                    [],
+                ),
+
                 "retrieval": {
                     "hit_at_1": hit_at_k(
                         results=retrieval_results,
-                        expected_source_contains=expected_source_contains,
-                        expected_section_keywords=expected_section_keywords,
+                        item=item,
                         k=1,
                     ),
                     "hit_at_5": hit_at_k(
                         results=retrieval_results,
-                        expected_source_contains=expected_source_contains,
-                        expected_section_keywords=expected_section_keywords,
+                        item=item,
                         k=5,
                     ),
                     "hit_at_10": hit_at_k(
                         results=retrieval_results,
-                        expected_source_contains=expected_source_contains,
-                        expected_section_keywords=expected_section_keywords,
+                        item=item,
                         k=10,
                     ),
                     "mrr": reciprocal_rank(
                         results=retrieval_results,
-                        expected_source_contains=expected_source_contains,
-                        expected_section_keywords=expected_section_keywords,
+                        item=item,
                     ),
                 },
                 "reranking": {
                     "hit_at_1": hit_at_k(
                         results=reranked_results,
-                        expected_source_contains=expected_source_contains,
-                        expected_section_keywords=expected_section_keywords,
+                        item=item,
                         k=1,
                     ),
                     "hit_at_5": hit_at_k(
                         results=reranked_results,
-                        expected_source_contains=expected_source_contains,
-                        expected_section_keywords=expected_section_keywords,
+                        item=item,
                         k=5,
                     ),
                     "mrr": reciprocal_rank(
                         results=reranked_results,
-                        expected_source_contains=expected_source_contains,
-                        expected_section_keywords=expected_section_keywords,
+                        item=item,
                     ),
                 },
                 "rag": {
@@ -128,22 +132,11 @@ class EvaluationPipeline:
                     "answer_preview": rag_output["answer"][:500],
                 },
                 "top_retrieval_preview": [
-                    {
-                        "rank": result["rank"],
-                        "score": result["score"],
-                        "section_title": result["section_title"],
-                        "source_path": result["source_path"],
-                    }
+                    self._preview_result(result)
                     for result in retrieval_results[:5]
                 ],
                 "top_reranking_preview": [
-                    {
-                        "rerank_rank": result["rerank_rank"],
-                        "rerank_score": result["rerank_score"],
-                        "retrieval_rank": result["retrieval_rank"],
-                        "section_title": result["section_title"],
-                        "source_path": result["source_path"],
-                    }
+                    self._preview_reranked_result(result)
                     for result in reranked_results[:5]
                 ],
             }
@@ -151,6 +144,37 @@ class EvaluationPipeline:
             query_reports.append(query_report)
 
         return self._build_report(query_reports)
+
+    @staticmethod
+    def _preview_result(result: dict[str, Any]) -> dict[str, Any]:
+        metadata = result.get("metadata", {}) or {}
+
+        return {
+            "rank": result.get("rank"),
+            "score": result.get("score"),
+            "section_title": result.get("section_title"),
+            "source_path": result.get("source_path"),
+            "company": metadata.get("company"),
+            "fiscal_year": metadata.get("fiscal_year"),
+            "form_item": metadata.get("form_item"),
+            "section_type": metadata.get("section_type"),
+        }
+
+    @staticmethod
+    def _preview_reranked_result(result: dict[str, Any]) -> dict[str, Any]:
+        metadata = result.get("metadata", {}) or {}
+
+        return {
+            "rerank_rank": result.get("rerank_rank"),
+            "rerank_score": result.get("rerank_score"),
+            "retrieval_rank": result.get("retrieval_rank"),
+            "section_title": result.get("section_title"),
+            "source_path": result.get("source_path"),
+            "company": metadata.get("company"),
+            "fiscal_year": metadata.get("fiscal_year"),
+            "form_item": metadata.get("form_item"),
+            "section_type": metadata.get("section_type"),
+        }
 
     def _build_report(self, query_reports: list[dict[str, Any]]) -> dict[str, Any]:
         if not query_reports:

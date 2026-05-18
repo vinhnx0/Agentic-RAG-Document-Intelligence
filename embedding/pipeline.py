@@ -35,20 +35,54 @@ class EmbeddingPipeline:
         )
 
     def _build_embedding_text(self, chunk: DocumentChunk) -> str:
-        section_title = chunk.section_title or ""
-        section_path = " > ".join(chunk.section_path or [])
-        source_path = chunk.metadata.get("source_path", "")
+        """
+        Build enriched embedding text for financial RAG.
+
+        Important:
+        - chunk.text remains the original text for answer generation/citations.
+        - embedding_text includes metadata context for better vector search.
+        """
+
+        metadata = chunk.metadata or {}
+
+        company = metadata.get("company") or ""
+        ticker = metadata.get("ticker") or ""
+        fiscal_year = metadata.get("fiscal_year") or ""
+        report_type = metadata.get("report_type") or ""
+        form_item = metadata.get("form_item") or ""
+        section_type = metadata.get("section_type") or ""
+        part = metadata.get("part") or ""
+        section_title = chunk.section_title or metadata.get("section_title") or ""
+        section_path = " > ".join(chunk.section_path or metadata.get("section_path") or [])
+        source_path = metadata.get("source_path") or ""
+
+        subheadings = metadata.get("subheadings") or []
+        if isinstance(subheadings, list):
+            subheadings_text = " > ".join(str(item) for item in subheadings[:10])
+        else:
+            subheadings_text = str(subheadings)
 
         parts = [
+            f"Company: {company}",
+            f"Ticker: {ticker}",
+            f"Fiscal year: {fiscal_year}",
+            f"Report type: {report_type}",
+            f"Part: {part}",
+            f"Form item: {form_item}",
+            f"Section type: {section_type}",
             f"Section title: {section_title}",
             f"Section path: {section_path}",
+            f"Subheadings: {subheadings_text}",
             f"Source: {source_path}",
             "",
             "Content:",
             chunk.text,
         ]
 
-        return "\n".join(part for part in parts if part is not None).strip()
+        return "\n".join(
+            part for part in parts
+            if part is not None and str(part).strip()
+        ).strip()
 
     def run(self, chunks: list[DocumentChunk]) -> list[EmbeddedChunk]:
         embedder = self.registry.get_embedder()
@@ -64,7 +98,7 @@ class EmbeddingPipeline:
 
         embedded_chunks: list[EmbeddedChunk] = []
 
-        for chunk, vector in zip(chunks, vectors, strict=True):
+        for chunk, vector, embedding_text in zip(chunks, vectors, texts, strict=True):
             embedded_chunk = EmbeddedChunk(
                 chunk_id=chunk.chunk_id,
                 doc_id=chunk.doc_id,
@@ -83,7 +117,8 @@ class EmbeddingPipeline:
                         "normalize_embeddings",
                         True,
                     ),
-                    "embedding_input_strategy": "heading_aware",
+                    "embedding_input_strategy": "financial_metadata_enriched",
+                    "embedding_text_preview": embedding_text[:500],
                 },
             )
             embedded_chunks.append(embedded_chunk)

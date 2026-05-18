@@ -11,6 +11,12 @@ from parsing.parsers import ParserRegistry
 from schemas.documents import ParsedDocument, RawDocument
 
 
+SUPPORTED_PARSER_TYPES = {
+    "markdown_structured",
+    "financial_pdf_structured",
+}
+
+
 class ParsingPipeline:
     def __init__(self, config_path: str | Path) -> None:
         self.config_path = Path(config_path)
@@ -27,7 +33,7 @@ class ParsingPipeline:
         if not parser_type:
             raise ValueError("Missing parser.type in config")
 
-        if parser_type != "markdown_structured":
+        if parser_type not in SUPPORTED_PARSER_TYPES:
             raise ValueError(f"Unsupported parser.type: {parser_type}")
 
         parsed_documents: list[ParsedDocument] = []
@@ -38,3 +44,12 @@ class ParsingPipeline:
             parsed_documents.append(parsed_doc)
 
         return parsed_documents
+
+    def get_processed_data_dir(self) -> Path:
+        processed_data_dir = self.config.get("processed_data_dir")
+        if not processed_data_dir:
+            raise KeyError(
+                "Missing 'processed_data_dir' in corpus config. "
+                "Please add it to the YAML file."
+            )
+        return Path(processed_data_dir)

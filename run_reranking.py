@@ -9,10 +9,10 @@ from reranking.pipeline import RerankingPipeline
 from utils.io import ensure_stage_output_dir, write_json
 
 
-CONFIG_PATH = "configs/corpora/tech_docs.yaml"
+CONFIG_PATH = "configs/corpora/financial_reports.yaml"
 
 
-DEFAULT_QUERY = "How do I create a Qdrant collection?"
+DEFAULT_QUERY = "What risks did Apple mention in 2024?"
 
 
 def build_summary(reranking_output: dict[str, Any]) -> dict[str, Any]:

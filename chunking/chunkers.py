@@ -80,22 +80,51 @@ class SectionTokenChunker(BaseChunker):
             section_path = list(section.metadata.get("heading_path", [section.title]))
 
             chunk = DocumentChunk(
-                chunk_id=self._build_chunk_id(document.doc_id, section.section_id, chunk_index),
+                chunk_id=self._build_chunk_id(
+                    document.doc_id,
+                    section.section_id,
+                    chunk_index,
+                ),
                 doc_id=document.doc_id,
                 corpus=document.corpus,
                 text=chunk_text,
                 chunk_index=chunk_index,
                 section_title=section.title,
                 section_path=section_path,
+                page_number=section.metadata.get("page_number"),
                 metadata={
+                    # source/document metadata
                     "source_type": document.source_type,
                     "source_path": document.source_path,
+                    "company": document.metadata.get("company"),
+                    "ticker": document.metadata.get("ticker"),
+                    "fiscal_year": document.metadata.get("fiscal_year"),
+                    "report_type": document.metadata.get("report_type"),
+                    "parser_backend": document.metadata.get("parser_backend"),
+                    "document_title": document.title,
+
+                    # section metadata
                     "section_id": section.section_id,
                     "section_level": section.level,
                     "parent_section_id": section.parent_section_id,
+                    "section_title": section.title,
+                    "section_path": section_path,
+                    "part": section.metadata.get("part"),
+                    "form_item": section.metadata.get("form_item"),
+                    "section_type": section.metadata.get("section_type"),
+                    "subheadings": section.metadata.get("subheadings", []),
+                    "subheading_count": section.metadata.get("subheading_count", 0),
+
+                    # chunk metadata
                     "token_count_estimate": len(window_tokens),
+                    "chunk_index_in_document": chunk_index,
+                    "chunk_index_in_section": offset,
+                    "chunking_strategy": "section_then_tokens",
+                    "max_tokens": self.max_tokens,
+                    "overlap_tokens": self.overlap_tokens,
                 },
             )
+
             chunks.append(chunk)
 
         return chunks
