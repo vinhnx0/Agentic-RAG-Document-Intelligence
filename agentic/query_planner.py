@@ -61,6 +61,16 @@ COMPARISON_KEYWORDS = [
 ]
 
 
+INSUFFICIENT_KEYWORDS = [
+    "personally think",
+    "opinion",
+    "predict",
+    "future stock price",
+    "should i invest",
+    "recommend buying",
+]
+
+
 @dataclass(slots=True)
 class QueryPlan:
     query: str
@@ -116,7 +126,11 @@ class RuleBasedQueryPlanner:
             metric=metric,
             section_types=section_types,
             requires_comparison=requires_comparison,
-            expected_behavior="answer",
+            expected_behavior = (
+                "insufficient_evidence"
+                if any(keyword in normalized_query for keyword in INSUFFICIENT_KEYWORDS)
+                else "answer"
+            )
         )
 
     @staticmethod
