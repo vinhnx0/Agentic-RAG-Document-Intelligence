@@ -4,3 +4,5 @@ qdrant-client
 docling
 fastapi
 uvicorn
+flask
+requests
