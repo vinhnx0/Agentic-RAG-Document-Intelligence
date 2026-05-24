@@ -5,7 +5,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Any
 
-from qdrant_client import QdrantClient
+from qdrant_client import QdrantClient, models
 
 
 class BaseRetriever(ABC):
@@ -16,6 +16,7 @@ class BaseRetriever(ABC):
         query_vector: list[float],
         top_k: int,
         score_threshold: float | None = None,
+        metadata_filters: dict[str, Any] | None = None,
     ) -> list[dict[str, Any]]:
         raise NotImplementedError
 
@@ -39,15 +40,19 @@ class QdrantRetriever(BaseRetriever):
         query_vector: list[float],
         top_k: int,
         score_threshold: float | None = None,
+        metadata_filters: dict[str, Any] | None = None,
     ) -> list[dict[str, Any]]:
         if top_k <= 0:
             raise ValueError("top_k must be > 0")
+
+        query_filter = self._build_qdrant_filter(metadata_filters)
 
         query_response = self.client.query_points(
             collection_name=collection_name,
             query=query_vector,
             limit=top_k,
             score_threshold=score_threshold,
+            query_filter=query_filter,
             with_payload=True,
             with_vectors=False,
         )
@@ -78,6 +83,31 @@ class QdrantRetriever(BaseRetriever):
             "source_path": payload.get("metadata", {}).get("source_path"),
             "metadata": payload.get("metadata", {}),
         }
+    
+    @staticmethod
+    def _build_qdrant_filter(
+        metadata_filters: dict[str, Any] | None,
+    ) -> models.Filter | None:
+        if not metadata_filters:
+            return None
+
+        conditions: list[models.FieldCondition] = []
+
+        for key, value in metadata_filters.items():
+            if value is None:
+                continue
+
+            conditions.append(
+                models.FieldCondition(
+                    key=f"metadata.{key}",
+                    match=models.MatchValue(value=value),
+                )
+            )
+
+        if not conditions:
+            return None
+
+        return models.Filter(must=conditions)
 
 
 class RetrieverRegistry:
