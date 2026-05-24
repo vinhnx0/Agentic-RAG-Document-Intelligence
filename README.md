@@ -1,217 +1,152 @@
 # AI Document Intelligence System (Agentic RAG)
 
-Modular RAG pipeline for financial document intelligence with metadata-aware retrieval and evaluation.
+Production-oriented financial document intelligence system using SEC 10-K filings, metadata-aware retrieval, reranking, and evidence sufficiency validation.
 
 
-## Project Goal
+## Demo
 
-Build a production-oriented Retrieval-Augmented Generation (RAG) system for complex documents, starting from architecture validation on technical documentation and moving toward real-world financial report intelligence using SEC 10-K filings.
+### Flask Demo UI
 
-The project focuses on:
+![Flask UI](docs/screenshots/flask-ui.png)
 
-* modular AI engineering architecture
-* metadata-aware retrieval
-* evaluation-driven iteration
-* production-oriented document processing pipelines
+Features shown:
 
-
-## Current Status
-
-### Completed
-
-* Modular ingestion → retrieval → evaluation pipeline
-* Section-aware chunking
-* Metadata-enriched embedding
-* Qdrant vector database integration
-* Cross-encoder reranking
-* Extractive RAG with citation output
-* Evaluation pipeline with Hit@K, MRR, and citation coverage
-* SEC-aware financial report parser
-* Baseline Financial RAG evaluation
-
-### In Progress
-
-* Query Planner
-* Metadata-Aware Retrieval
-* Evidence Sufficiency Checker
+* financial question answering
+* query planning
+* metadata-aware retrieval filters
+* evidence sufficiency validation
+* citation-based responses
 
 
-## Architecture Overview
+### FastAPI Swagger Docs
+Access: http://127.0.0.1:8000/docs
+![FastAPI Swagger](docs/screenshots/swagger-docs.png)
+
+Available endpoints:
+
+* `GET /health`
+* `POST /query`
+* `GET /evaluation/summary`
+
+
+### Evaluation Comparison
+
+Comparison between:
 
 ```text
-Raw Documents
-  → Ingestion
-  → Parsing
-  → Section-aware Chunking
-  → Embedding
-  → Qdrant Vector Store
-  → Retrieval
-  → Reranking
-  → Extractive RAG
-  → Evaluation
-```
-
-Current system design is modular and config-driven to support experimentation across datasets and retrieval strategies.
-
-
-## Dataset Strategy
-
-### Dataset A — Technical Documentation (Architecture Validation)
-
-Dataset A was used to validate the modular RAG architecture, retrieval pipeline, and evaluation framework before moving to financial documents.
-
-A small 15-query evaluation compared:
-
-* baseline embedding
-* heading-aware embedding
-
-Results showed that adding section metadata improved retrieval quality, especially Hit@1 and MRR.
-
-| Version       | Retrieval Hit@1 | Retrieval MRR | Reranking Hit@1 |
-| ------------- | --------------: | ------------: | --------------: |
-| Baseline      |            0.73 |          0.86 |            0.73 |
-| Heading-aware |            0.87 |          0.93 |            0.80 |
-
-Dataset A is mainly used as an architecture proof and evaluation baseline.
-
-
-### Dataset B — SEC 10-K Financial Reports (Main Portfolio Use Case)
-
-Dataset B is the primary real-world use case of the project.
-
-Current dataset:
-
-* Apple SEC 10-K filings (2021–2025)
-
-Current financial pipeline includes:
-
-* Docling PDF parsing
-* SEC-aware section parsing
-* Section-aware chunking
-* Metadata-enriched embedding
-* Metadata-enriched reranking
-* Financial retrieval evaluation
-
-The project is currently building toward:
-
-* Baseline Financial RAG
-* Agentic Metadata-Aware Financial RAG
-
-
-## Baseline Financial RAG
-
-The current financial pipeline uses:
-
-* semantic vector retrieval
-* cross-encoder reranking
-* metadata-enriched embedding
-* extractive RAG answer generation
-* citation-based output
-
-Financial metadata currently used across the pipeline includes:
-
-* company
-* fiscal year
-* SEC form item
-* section type
-* subsection headings
-
-Example:
-
-```text id="r2o6gs"
-Item 1A → Risk Factors
-Item 1C → Cybersecurity
-Item 7 → Management Discussion
-Item 7A → Market Risk
-Item 8 → Financial Statements
-```
-
-This baseline establishes the “before” system for later comparison with the agentic retrieval layer.
-
-
-## Planned Agentic Layer
-
-The next stage of the project focuses on metadata-aware financial retrieval.
-
-### 1. Query Planner
-
-Converts natural language questions into structured retrieval intent.
-
-Example:
-
-```json id="q8z7kh"
-{
-  "company": "Apple",
-  "years": [2025],
-  "form_items": ["Item 7A"],
-  "section_types": ["market_risk"]
-}
-```
-
-### 2. Metadata-Aware Retrieval
-
-Uses query metadata to narrow retrieval candidates before vector search.
-
-Goal:
-
-* reduce wrong-section retrieval
-* improve year-specific retrieval
-* improve SEC section targeting
-
-### 3. Evidence Sufficiency Checker
-
-Detects when retrieved evidence is insufficient instead of forcing an answer.
-
-Goal:
-
-* reduce hallucinated responses
-* improve reliability for financial QA
-
-
-## Evaluation Strategy
-
-The project uses retrieval-focused evaluation instead of only qualitative demos.
-
-Current metrics:
-
-* Hit@1
-* Hit@5
-* Hit@10
-* MRR (Mean Reciprocal Rank)
-* citation coverage
-
-Evaluation uses manually designed financial-report queries covering:
-
-* revenue questions
-* risk-factor questions
-* management discussion questions
-* multi-year comparison questions
-* insufficient-evidence questions
-
-Main comparison direction:
-
-```text id="13z3w1"
 Baseline Financial RAG
 vs
 Agentic Metadata-Aware Financial RAG
 ```
 
 
-## Current Baseline Financial Results
+### Insufficient Evidence Handling
 
-| Stage     | Hit@1 | Hit@5 |  MRR |
-| --------- | ----: | ----: | ---: |
-| Retrieval |  0.54 |  0.88 | 0.69 |
-| Reranking |  0.77 |  0.94 | 0.85 |
+![Insufficient Evidence](docs/screenshots/insufficient-evidence.png)
 
-Current remaining failure cases are mostly:
+Example query:
 
-* wrong SEC section retrieval
-* cybersecurity section targeting
-* market-risk section targeting
-* multi-year retrieval reasoning
+```text
+What does Apple's CEO personally think about the company's future?
+```
 
-These failures directly motivate the next metadata-aware retrieval phase.
+The system detects unsupported or opinion-based questions and returns an insufficient-evidence response instead of generating unsupported answers.
+
+
+## Key Features
+
+### Financial Document Intelligence Pipeline
+
+* SEC 10-K parsing pipeline
+* section-aware chunking
+* metadata-enriched embedding
+* Qdrant vector retrieval
+* cross-encoder reranking
+* extractive RAG with citations
+
+### Agentic Retrieval Layer
+
+* rule-based query planner
+* metadata-aware retrieval filters
+* evidence sufficiency checker
+* insufficient-evidence handling
+
+### Evaluation Framework
+
+* Hit@1 / Hit@5 / Hit@10
+* MRR (Mean Reciprocal Rank)
+* citation coverage
+* insufficient-evidence accuracy
+* baseline vs agentic comparison
+
+### API & Demo
+
+* FastAPI serving layer
+* Flask demo UI
+* cross-device local network access
+
+
+## Architecture
+
+### Offline Indexing Pipeline
+
+```text
+SEC 10-K PDFs
+  ↓
+Ingestion
+  ↓
+SEC-aware Parsing
+  ↓
+Section-aware Chunking
+  ↓
+Embedding
+  ↓
+Qdrant Vector Store
+````
+
+### Online Query Pipeline
+
+```text
+User
+  ↓
+Flask Demo UI
+  ↓
+FastAPI API Layer
+  ↓
+Agentic RAG Pipeline
+  ├── Query Planner
+  ├── Metadata Filter Builder
+  ├── Retrieval from Qdrant
+  ├── Cross-Encoder Reranking
+  ├── Evidence Sufficiency Checker
+  └── Extractive RAG + Citations
+```
+
+
+## Baseline vs Agentic Evaluation
+
+### Baseline Financial RAG
+
+| Stage     | Hit@1 | Hit@5 | MRR  |
+| --------- | ----- | ----- | ---- |
+| Retrieval | 0.54  | 0.88  | 0.69 |
+| Reranking | 0.77  | 0.94  | 0.85 |
+
+### Agentic Metadata-Aware Financial RAG
+
+| Metric            | Score |
+| ----------------- | ----- |
+| Retrieval Hit@1   | 0.88  |
+| Retrieval Hit@5   | 0.98  |
+| Retrieval MRR     | 0.93  |
+| Citation Coverage | 0.92  |
+
+Agentic improvements mainly target:
+
+* SEC section targeting
+* year-specific retrieval
+* metadata-aware filtering
+* insufficient-evidence detection
 
 
 ## Tech Stack
@@ -233,6 +168,11 @@ These failures directly motivate the next metadata-aware retrieval phase.
 * CrossEncoder reranking
 * Qdrant Vector Database
 
+### API & Demo
+
+* FastAPI
+* Flask
+
 ### Evaluation
 
 * Hit@K
@@ -242,86 +182,97 @@ These failures directly motivate the next metadata-aware retrieval phase.
 ### Infrastructure
 
 * Docker
-* FastAPI (planned)
+* Qdrant
 
 
 ## How to Run
 
-```bash id="e0vtj7"
+### 1. Create virtual environment
+
+```bash
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
+```
 
+### 2. Start Qdrant
+
+```bash
 docker run -p 6333:6333 -p 6334:6334 qdrant/qdrant
+```
 
-python run_ingestion.py
-python run_parsing.py
-python run_chunking.py
-python run_embedding.py
-python run_vectorstore.py
-python run_retrieval.py
-python run_reranking.py
-python run_rag.py
-python run_evaluation.py
+### 3. Build the Financial Vector Store
+
+Run the indexed financial document pipeline before starting the API or demo.
+
+```bash
+python scripts/financial_baseline/run_vectorstore.py
+```
+
+
+### 4. Start API
+
+```bash
+uvicorn api.main:app --reload
+```
+
+### 5. Start Flask demo
+
+```bash
+python demo/app.py
 ```
 
 
 ## Project Structure
 
-```text id="xum4cw"
-configs/
-data/
-ingestion/
-parsing/
-chunking/
-embedding/
-retrieval/
-reranking/
-rag/
-evaluation/
-schemas/
-utils/
+```text
+Agentic-RAG-Document-Intelligence/
+├── agentic/
+│   ├── query_planner.py
+│   ├── metadata_filter.py
+│   ├── evidence_checker.py
+│   └── pipeline.py
+├── api/
+│   └── main.py
+├── chunking/
+├── configs/
+│   └── corpora/
+│       └── financial_reports.yaml
+├── demo/
+│   └── app.py
+├── docs/
+├── embedding/
+├── evaluation/
+│   ├── pipeline.py
+│   └── agentic_pipeline.py
+├── ingestion/
+├── parsing/
+├── rag/
+├── reranking/
+├── retrieval/
+├── schemas/
+├── scripts/
+│   ├── financial_baseline/
+│   └── financial_agentic/
+├── tests/
+├── utils/
+└── vectorstore/
 ```
 
 
-## Current Limitations
-
-* Current RAG generator is extractive, not generative
-* Query planner is still rule-based (in progress)
-* Metadata-aware filtering is not fully implemented yet
-* Evaluation currently focuses on Apple SEC filings only
-* No production deployment yet
-
-
-## Next Steps
-
-- Query Planner
-- Metadata-Aware Retrieval
-- Evidence Sufficiency Checker
-- FastAPI serving layer
-
-
-## Engineering Decisions
-
-### Why SEC-aware parsing?
-
-SEC 10-K filings contain highly structured sections (Item 1A, Item 7, Item 8, etc.). Preserving this structure improves retrieval quality and enables metadata-aware search.
-
-### Why metadata-enriched embedding and reranking?
-
-Pure semantic retrieval often retrieves related but incorrect SEC sections. Metadata enrichment improves section targeting and year-specific retrieval.
-
-### Why evaluation-first development?
-
-The project tracks retrieval quality using Hit@K and MRR before adding agentic features, allowing measurable before/after comparisons.
-
-
-## Portfolio Highlights
+## Engineering Highlights
 
 * Built modular end-to-end RAG pipeline from ingestion to evaluation
 * Implemented SEC-aware financial document parser
-* Added metadata-enriched embedding and reranking
-* Integrated Qdrant vector search with reranking pipeline
-* Built retrieval evaluation framework using Hit@K and MRR
-* Created baseline for future agentic metadata-aware retrieval comparison
-* Designed financial-document pipeline around real SEC 10-K filings
+* Added metadata-aware retrieval filtering on top of semantic vector search
+* Integrated Qdrant vector retrieval with cross-encoder reranking
+* Designed evaluation framework for baseline vs agentic retrieval comparison
+* Implemented insufficient-evidence validation to reduce unsupported answers
+* Exposed the RAG pipeline through FastAPI and Flask demo layers
+
+
+## Additional Documentation
+
+* [Architecture Details](docs/architecture.md)
+* [Evaluation Details](docs/evaluation.md)
+* [Engineering Decisions](docs/engineering-decisions.md)
